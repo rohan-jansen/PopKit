@@ -1,0 +1,22 @@
+{
+  "name": "PopKit",
+  "version": "0.1.0",
+  "summary": "A short description of PopKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/rohan-jansen/PopKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "rohan-jansen": "rohan@flatcircle.io"
+  },
+  "source": {
+    "git": "https://github.com/rohan-jansen/PopKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "PopKit/Classes/**/*"
+}

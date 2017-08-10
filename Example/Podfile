@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PopKit_Example' do
+  pod 'PopKit', :path => '../'
+
+  target 'PopKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
