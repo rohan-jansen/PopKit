@@ -106,13 +106,13 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
         return PopKitPresentationController(presentedViewController: presented, presenting: presenting, popView: popKit!.popupView)
     }
     
-//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return PopKitPresentationAnimator(with: popKit!.inAnimation)
-//    }
-//
-//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return PopKitDismissingAnimator(with: popKit!.outAnimation)
-//    }
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PopKitPresentationAnimator(with: popKit!.inAnimation)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PopKitDismissingAnimator(with: popKit!.outAnimation)
+    }
 }
 
 class PopKitPresentationController: UIPresentationController {
@@ -139,6 +139,7 @@ protocol TransitionDuration {
 class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning, TransitionDuration {
     var inAnimation: PopKitAnimation = .fromTop
     var transitionDuration: TimeInterval?
+    var isPresentation = true
     
     init(with animation: PopKitAnimation) {
         inAnimation = animation
@@ -149,7 +150,45 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        transitionContext.completeTransition(true)
+        // 1
+        let key = isPresentation ? UITransitionContextViewControllerKey.to
+            : UITransitionContextViewControllerKey.from
+        
+        let controller = transitionContext.viewController(forKey: key)!
+        
+        // 2
+        transitionContext.containerView.addSubview(controller.view)
+        
+        // 3
+        let presentedFrame = transitionContext.finalFrame(for: controller)
+        var initialFrame = presentedFrame
+        
+        switch inAnimation {
+        case .fromTop:
+            initialFrame.origin.y = -transitionContext.containerView.frame.size.height
+        case .fromLeft:
+            initialFrame.origin.x = -transitionContext.containerView.frame.size.width
+        case .fromRight:
+            initialFrame.origin.x = transitionContext.containerView.frame.size.width
+        case .fromBottom:
+            initialFrame.origin.y = transitionContext.containerView.frame.size.height
+        case .zoomIn(let scale):
+            break
+        case .zoomOut(let scale):
+            break
+        }
+        
+        // 4
+        let finalFrame = presentedFrame
+        
+        // 5
+        let animationDuration = transitionDuration(using: transitionContext)
+        controller.view.frame = initialFrame
+        UIView.animate(withDuration: animationDuration, animations: {
+            controller.view.frame = finalFrame
+        }) { finished in
+            transitionContext.completeTransition(finished)
+        }
     }
 }
 
