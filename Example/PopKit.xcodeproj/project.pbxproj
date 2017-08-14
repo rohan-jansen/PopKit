@@ -15,6 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A002E607311C0FF2D672617D /* Pods_PopKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA7616A517CDDFA44411B4B /* Pods_PopKit_Example.framework */; };
 		AA4C7ADFEB294E229B995488 /* Pods_PopKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E1E408AC84FFD64E866CB /* Pods_PopKit_Tests.framework */; };
+		C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B39AF01F41AD50002978BC /* PopKit.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +43,11 @@
 		607FACE51AFB9204008FA782 /* PopKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		9EC07B73E1F2F3E452795B5A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		B32B66473CA0E10CB401519D /* PopKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = PopKit.podspec; path = ../PopKit.podspec; sourceTree = "<group>"; };
+		9EC07B73E1F2F3E452795B5A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B32B66473CA0E10CB401519D /* PopKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopKit.podspec; path = ../PopKit.podspec; sourceTree = "<group>"; };
+		C0B39AF01F41AD50002978BC /* PopKit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopKit.storyboard; sourceTree = "<group>"; };
 		C6C1DDBEE643E24CE7040CC6 /* Pods-PopKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		DFCCF4284F8DE6A006C1FF69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		DFCCF4284F8DE6A006C1FF69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DFE12719A4003B66819D1C91 /* Pods-PopKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C0B39AF01F41AD50002978BC /* PopKit.storyboard */,
 			);
 			name = "Example for PopKit";
 			path = PopKit;
@@ -215,6 +218,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 56XX9JASG7;
 						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -251,6 +255,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +501,9 @@
 			baseConfigurationReference = 0DD7D6703EF3B8C1D38DAE36 /* Pods-PopKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56XX9JASG7;
 				INFOPLIST_FILE = PopKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -510,7 +517,9 @@
 			baseConfigurationReference = 01CB12B2C9FC1B5914D5CE4E /* Pods-PopKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56XX9JASG7;
 				INFOPLIST_FILE = PopKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
