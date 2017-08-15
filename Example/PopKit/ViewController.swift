@@ -14,10 +14,10 @@ class ViewController: UIViewController {
         
         
         return PopKitBuilder() {
-            let testView = TestView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            let testView = TestView()
             testView.backgroundColor = .red
-            
-            $0.inAnimation = .fromBottom
+            $0.constraints = [.edges(left: 0, right: 50, top: 0, bottom: 0)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200)
+            $0.inAnimation = .fromLeft
             $0.popupView = testView
             $0.mainAction = { print("Did perform main action") }
             $0.dismissAction = { print("Did perform dimiss action") }
@@ -41,6 +41,12 @@ class TestView: UIView, PopView {
     
 }
 
+enum PopKitConstaint {
+    case edges(left: Float?, right: Float?, top: Float?, bottom: Float?)
+    case width(Float?)
+    case height(Float?)
+    case center(x: Float?, y: Float?)
+}
 
 enum PopKitAnimation {
     case zoomIn(Float)
@@ -79,6 +85,7 @@ class PopKit {
     var inAnimation: PopKitAnimation = .fromTop
     var outAnimation: PopKitAnimation = .fromBottom
     var backgroundEffect: PopKitBackgroundEffect = .blurLight
+    var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
     
     func show() {
         let container = PopKitContainerController.fromStoryboard()
@@ -104,31 +111,81 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return PopKitPresentationController(presentedViewController: presented, presenting: presenting, popView: popKit!.popupView)
+        return PopKitPresentationController(presentedViewController: presented, presenting: presenting, popKit: popKit!)
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PopKitPresentationAnimator(with: popKit!.inAnimation)
+        return PopKitPresentationAnimator(with: popKit!)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PopKitDismissingAnimator(with: popKit!.outAnimation)
+        return PopKitDismissingAnimator(with: popKit!)
     }
 }
 
 class PopKitPresentationController: UIPresentationController {
-    var popupView: PopView?
+    var popKit: PopKit?
     
-    init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, popView: PopView?) {
+    init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, popKit: PopKit?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-        self.popupView = popView
+        self.popKit = popKit
         
-        if let popup = popupView as? UIView {
+        if let kit = popKit, let popup = kit.popupView as? UIView {
+            popup.translatesAutoresizingMaskIntoConstraints = false
             presentedViewController.view.addSubview(popup)
+            
+            
+            kit.constraints.forEach({ (kitConstraint) in
+                switch kitConstraint {
+                case .center(x: let x, y: let y):
+                    if let x = x {
+                        popup.centerXAnchor.constraint(equalTo: presentedViewController.view.centerXAnchor, constant: CGFloat(x)).isActive = true
+
+                    }
+                    
+                    if let y = y {
+                        popup.centerYAnchor.constraint(equalTo: presentedViewController.view.centerYAnchor, constant: CGFloat(y)).isActive = true
+                    }
+                    
+                case .edges(left: let left, right: let right, top: let top, bottom: let bottom):
+                    if let left = left {
+                        popup.leftAnchor.constraint(equalTo: presentedViewController.view.leftAnchor, constant: CGFloat(left)).isActive = true
+                    }
+                    
+                    if let right = right {
+                        popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -CGFloat(right)).isActive = true
+                    }
+                    
+                    if let top = top {
+                        popup.topAnchor.constraint(equalTo: presentedViewController.view.topAnchor, constant: CGFloat(top)).isActive = true
+                    }
+                    
+                    if let bottom = bottom {
+                        popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -CGFloat(bottom)).isActive = true
+                    }
+                    
+                case .width(let width):
+                    if let width = width {
+                        popup.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+                    }
+                    
+                case .height(let height):
+                    if let height = height {
+                        popup.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+                    }
+                }
+            })
+
+            presentedViewController.view.layoutIfNeeded()
+            
         }
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
+        guard let popupView = popKit?.popupView else {
+            return .zero
+        }
+        
         return (popupView as! UIView).frame
     }
     
@@ -151,11 +208,11 @@ protocol TransitionDuration {
 }
 
 class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning, TransitionDuration {
-    var inAnimation: PopKitAnimation = .fromTop
+    var kit: PopKit
     var transitionDuration: TimeInterval?
     
-    init(with animation: PopKitAnimation) {
-        inAnimation = animation
+    init(with kit: PopKit) {
+        self.kit = kit
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -164,25 +221,24 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let controller = transitionContext.viewController(forKey: .to)!
+        let containerController = transitionContext.viewController(forKey: .to)!
+        let controller = transitionContext.viewController(forKey: .to)?.presentationController as! PopKitPresentationController
         
-        transitionContext.containerView.addSubview(controller.view)
+        transitionContext.containerView.addSubview(controller.presentedViewController.view)
         
-        let views = transitionContext.viewController(forKey: .from)!.view.snapshotView(afterScreenUpdates: false)
+        let presentedFrame = containerController.view.frame // transitionContext.finalFrame(for: controller.presentedViewController)
+        var initialFrame = controller.frameOfPresentedViewInContainerView
+        let finalFrame = controller.frameOfPresentedViewInContainerView
         
-        let presentedFrame = transitionContext.finalFrame(for: controller)
-        var initialFrame = presentedFrame
-        let finalFrame = presentedFrame
-        
-        switch inAnimation {
+        switch kit.inAnimation {
         case .fromTop:
-            initialFrame.origin.y = -transitionContext.containerView.frame.size.height
+            initialFrame.origin.y = -presentedFrame.size.height
         case .fromLeft:
-            initialFrame.origin.x = -transitionContext.containerView.frame.size.width
+            initialFrame.origin.x = -presentedFrame.size.width
         case .fromRight:
-            initialFrame.origin.x = transitionContext.containerView.frame.size.width
+            initialFrame.origin.x = presentedFrame.size.width
         case .fromBottom:
-            initialFrame.origin.y = transitionContext.containerView.frame.size.height
+            initialFrame.origin.y = presentedFrame.size.height
         case .zoomIn(let scale):
             break
         case .zoomOut(let scale):
@@ -190,9 +246,12 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         }
         
         let animationDuration = transitionDuration(using: transitionContext)
-        controller.view.frame = initialFrame
+        controller.presentedViewController.view.frame = initialFrame
         UIView.animate(withDuration: animationDuration, animations: {
-            controller.view.frame = finalFrame
+            controller.presentedViewController.view.frame = finalFrame
+            
+            
+            
         }) { finished in
             transitionContext.completeTransition(finished)
         }
@@ -200,11 +259,11 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 }
 
 class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning, TransitionDuration {
-    var outAnimation: PopKitAnimation = .fromBottom
+    var kit: PopKit
     var transitionDuration: TimeInterval?
     
-    init(with animation: PopKitAnimation) {
-        outAnimation = animation
+    init(with kit: PopKit) {
+        self.kit = kit
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
