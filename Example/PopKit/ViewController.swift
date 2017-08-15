@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         return PopKitBuilder() {
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200)
             $0.inAnimation = .bounceInBottom(damping: 0.86, velocity: 2)
-            $0.backgroundEffect = .transparentOverlay(0.4)
+            $0.backgroundEffect = .blurDark // .transparentOverlay(0.4)
             $0.popupView = testView
         }
     }
@@ -36,6 +36,13 @@ class TestView: UIView, PopView {
         layer.cornerRadius = 15
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        addGestureRecognizer(tap)
+    }
+    
+    func hide() {
+        dismiss()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,10 +84,15 @@ internal func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
 
 protocol PopView { }
 
+extension Notification.Name {
+    static var dismissPopKit: NSNotification.Name {
+        return Notification.Name("DismissPopKit")
+    }
+}
+
 extension PopView where Self: UIView {
-    
     func dismiss() {
-        
+        NotificationCenter.default.post(name: .dismissPopKit, object: nil)
     }
 }
 
@@ -92,6 +104,12 @@ class PopKit {
     var outAnimation: PopKitAnimation = .slideInBottom
     var backgroundEffect: PopKitBackgroundEffect = .blurLight
     var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
+    
+    init() {
+        NotificationCenter.default.addObserver(forName: .dismissPopKit, object: nil, queue: .main) { [weak self] (notification) in
+           self?.dismiss()
+        }
+    }
     
     func show() {
         let container = PopKitContainerController.fromStoryboard()
@@ -137,6 +155,7 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
 
 class PopKitPresentationController: UIPresentationController {
     var popKit: PopKit?
+    var effectView: UIView = UIView()
     
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, popKit: PopKit?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
@@ -201,19 +220,28 @@ class PopKitPresentationController: UIPresentationController {
         return (popupView as! UIView).frame
     }
     
+    override func dismissalTransitionWillBegin() {
+        super.presentationTransitionWillBegin()
+        UIView.animate(withDuration: 0.7, animations: { [unowned self] in
+            self.effectView.alpha = 0
+        }) { (done) in
+            self.effectView.removeFromSuperview()
+        }
+    }
+    
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
-        let effectView = PopKitBackgroundEffectManager.create(from: popKit!.backgroundEffect)
+        effectView = PopKitBackgroundEffectManager.create(from: popKit!.backgroundEffect)
         effectView.frame = presentingViewController.view.frame
         effectView.alpha = 0
         presentingViewController.view.addSubview(effectView)
         
-        UIView.animate(withDuration: 0.5) { [unowned self] in
+        UIView.animate(withDuration: 0.7) { [unowned self] in
             switch self.popKit!.backgroundEffect {
             case .blurDark, .blurLight:
-                effectView.alpha = 1
+                self.effectView.alpha = 1
             case .transparentOverlay(let alpha):
-                effectView.alpha = CGFloat(alpha)
+                self.effectView.alpha = CGFloat(alpha)
             }
         }
     }
