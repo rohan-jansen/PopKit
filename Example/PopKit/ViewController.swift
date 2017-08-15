@@ -15,30 +15,28 @@ class ViewController: UIViewController {
         
         return PopKitBuilder() {
             let testView = TestView()
-            testView.backgroundColor = .red
-            $0.constraints = [.edges(left: 0, right: 50, top: 0, bottom: 0)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200)
-            $0.inAnimation = .fromLeft
+            $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200)
+            $0.inAnimation = .zoomIn(0.3)
             $0.popupView = testView
-            $0.mainAction = { print("Did perform main action") }
-            $0.dismissAction = { print("Did perform dimiss action") }
         }
         
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         popkit.show()
     }
 }
 
 class TestView: UIView, PopView {
+    init() {
+        super.init(frame: .zero)
+        backgroundColor = .white
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 enum PopKitConstaint {
@@ -136,6 +134,7 @@ class PopKitPresentationController: UIPresentationController {
             
             
             kit.constraints.forEach({ (kitConstraint) in
+                
                 switch kitConstraint {
                 case .center(x: let x, y: let y):
                     if let x = x {
@@ -153,7 +152,7 @@ class PopKitPresentationController: UIPresentationController {
                     }
                     
                     if let right = right {
-                        popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -CGFloat(right)).isActive = true
+                        popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -1 * CGFloat(right)).isActive = true
                     }
                     
                     if let top = top {
@@ -161,7 +160,7 @@ class PopKitPresentationController: UIPresentationController {
                     }
                     
                     if let bottom = bottom {
-                        popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -CGFloat(bottom)).isActive = true
+                        popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -1 * CGFloat(bottom)).isActive = true
                     }
                     
                 case .width(let width):
@@ -226,7 +225,7 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         transitionContext.containerView.addSubview(controller.presentedViewController.view)
         
-        let presentedFrame = containerController.view.frame // transitionContext.finalFrame(for: controller.presentedViewController)
+        let presentedFrame = containerController.view.frame 
         var initialFrame = controller.frameOfPresentedViewInContainerView
         let finalFrame = controller.frameOfPresentedViewInContainerView
         
@@ -240,18 +239,16 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         case .fromBottom:
             initialFrame.origin.y = presentedFrame.size.height
         case .zoomIn(let scale):
-            break
+            controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
         case .zoomOut(let scale):
-            break
+            controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
         }
         
         let animationDuration = transitionDuration(using: transitionContext)
         controller.presentedViewController.view.frame = initialFrame
         UIView.animate(withDuration: animationDuration, animations: {
             controller.presentedViewController.view.frame = finalFrame
-            
-            
-            
+            controller.presentedViewController.view.transform = CGAffineTransform.identity
         }) { finished in
             transitionContext.completeTransition(finished)
         }
