@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +21,25 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startscreen-background" translatesAutoresizingMaskIntoConstraints="NO" id="MXa-S4-5uR">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="MXa-S4-5uR" secondAttribute="bottom" id="C58-y9-ubq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MXa-S4-5uR" secondAttribute="trailing" id="FiN-L7-bAj"/>
+                            <constraint firstItem="MXa-S4-5uR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="h3B-Hf-CHD"/>
+                            <constraint firstItem="MXa-S4-5uR" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="tZt-jv-cuc"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="startscreen-background" width="640" height="1136"/>
+    </resources>
 </document>

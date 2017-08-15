@@ -17,13 +17,27 @@
                     <view key="view" contentMode="scaleToFill" id="8HZ-ai-qkq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startscreen-background" translatesAutoresizingMaskIntoConstraints="NO" id="cgu-uQ-gy4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.38932291666666669" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cgu-uQ-gy4" firstAttribute="trailing" secondItem="hL2-9Z-v6z" secondAttribute="trailing" id="7NP-33-8nx"/>
+                            <constraint firstItem="cgu-uQ-gy4" firstAttribute="bottom" secondItem="hL2-9Z-v6z" secondAttribute="bottom" id="7jv-mM-7qe"/>
+                            <constraint firstItem="cgu-uQ-gy4" firstAttribute="leading" secondItem="hL2-9Z-v6z" secondAttribute="leading" id="Rcb-CZ-k9u"/>
+                            <constraint firstItem="cgu-uQ-gy4" firstAttribute="top" secondItem="8HZ-ai-qkq" secondAttribute="top" id="gN0-Uu-eV1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hL2-9Z-v6z"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLK-HG-N8p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-65" y="140"/>
+            <point key="canvasLocation" x="-66.400000000000006" y="139.880059970015"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="startscreen-background" width="640" height="1136"/>
+    </resources>
 </document>

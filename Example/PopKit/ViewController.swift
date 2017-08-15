@@ -17,6 +17,7 @@ class ViewController: UIViewController {
             let testView = TestView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
             testView.backgroundColor = .red
             
+            $0.inAnimation = .fromBottom
             $0.popupView = testView
             $0.mainAction = { print("Did perform main action") }
             $0.dismissAction = { print("Did perform dimiss action") }
@@ -27,7 +28,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,6 +83,7 @@ class PopKit {
     func show() {
         let container = PopKitContainerController.fromStoryboard()
         container.popKit = self
+        
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             root.present(container, animated: true, completion: nil)
         }
@@ -122,13 +123,26 @@ class PopKitPresentationController: UIPresentationController {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         self.popupView = popView
         
-        if let popup = popupView {
-            presentedViewController.view.addSubview(popup as! UIView)
+        if let popup = popupView as? UIView {
+            presentedViewController.view.addSubview(popup)
         }
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
         return (popupView as! UIView).frame
+    }
+    
+    override func presentationTransitionWillBegin() {
+        super.presentationTransitionWillBegin()
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = presentingViewController.view.frame
+        blurEffectView.alpha = 0
+        presentingViewController.view.addSubview(blurEffectView)
+        
+        UIView.animate(withDuration: 0.5) {
+            blurEffectView.alpha = 1
+        }
     }
 }
 
@@ -139,7 +153,6 @@ protocol TransitionDuration {
 class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning, TransitionDuration {
     var inAnimation: PopKitAnimation = .fromTop
     var transitionDuration: TimeInterval?
-    var isPresentation = true
     
     init(with animation: PopKitAnimation) {
         inAnimation = animation
@@ -150,18 +163,16 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        // 1
-        let key = isPresentation ? UITransitionContextViewControllerKey.to
-            : UITransitionContextViewControllerKey.from
         
-        let controller = transitionContext.viewController(forKey: key)!
+        let controller = transitionContext.viewController(forKey: .to)!
         
-        // 2
         transitionContext.containerView.addSubview(controller.view)
         
-        // 3
+        let views = transitionContext.viewController(forKey: .from)!.view.snapshotView(afterScreenUpdates: false)
+        
         let presentedFrame = transitionContext.finalFrame(for: controller)
         var initialFrame = presentedFrame
+        let finalFrame = presentedFrame
         
         switch inAnimation {
         case .fromTop:
@@ -178,10 +189,6 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
             break
         }
         
-        // 4
-        let finalFrame = presentedFrame
-        
-        // 5
         let animationDuration = transitionDuration(using: transitionContext)
         controller.view.frame = initialFrame
         UIView.animate(withDuration: animationDuration, animations: {
