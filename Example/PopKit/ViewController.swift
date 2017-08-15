@@ -10,16 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var testView: PopView {
+        return TestView()
+    }
+    
     var popkit: PopKit {
-        
-        
         return PopKitBuilder() {
-            let testView = TestView()
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200)
-            $0.inAnimation = .zoomIn(0.3)
+            $0.inAnimation = .bounceInBottom(damping: 0.86, velocity: 2)
+            $0.backgroundEffect = .transparentOverlay(0.4)
             $0.popupView = testView
         }
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +33,9 @@ class TestView: UIView, PopView {
     init() {
         super.init(frame: .zero)
         backgroundColor = .white
+        layer.cornerRadius = 15
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,10 +53,14 @@ enum PopKitConstaint {
 enum PopKitAnimation {
     case zoomIn(Float)
     case zoomOut(Float)
-    case fromTop
-    case fromLeft
-    case fromRight
-    case fromBottom
+    case slideInTop
+    case slideInLeft
+    case slideInRight
+    case slideInBottom
+    case bounceInTop(damping: Float, velocity: Float)
+    case bounceInLeft(damping: Float, velocity: Float)
+    case bounceInRight(damping: Float, velocity: Float)
+    case bounceInBottom(damping: Float, velocity: Float)
 }
 
 enum PopKitBackgroundEffect {
@@ -80,8 +88,8 @@ class PopKit {
     var popupView: PopView?
     var dismissAction: (() -> Void)?
     var mainAction: (() -> Void)?
-    var inAnimation: PopKitAnimation = .fromTop
-    var outAnimation: PopKitAnimation = .fromBottom
+    var inAnimation: PopKitAnimation = .slideInTop
+    var outAnimation: PopKitAnimation = .slideInBottom
     var backgroundEffect: PopKitBackgroundEffect = .blurLight
     var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
     
@@ -91,6 +99,12 @@ class PopKit {
         
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             root.present(container, animated: true, completion: nil)
+        }
+    }
+    
+    func dismiss() {
+        if let root = UIApplication.shared.keyWindow?.rootViewController, let presented = root.presentedViewController {
+            presented.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -131,7 +145,6 @@ class PopKitPresentationController: UIPresentationController {
         if let kit = popKit, let popup = kit.popupView as? UIView {
             popup.translatesAutoresizingMaskIntoConstraints = false
             presentedViewController.view.addSubview(popup)
-            
             
             kit.constraints.forEach({ (kitConstraint) in
                 
@@ -190,14 +203,35 @@ class PopKitPresentationController: UIPresentationController {
     
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = presentingViewController.view.frame
-        blurEffectView.alpha = 0
-        presentingViewController.view.addSubview(blurEffectView)
+        let effectView = PopKitBackgroundEffectManager.create(from: popKit!.backgroundEffect)
+        effectView.frame = presentingViewController.view.frame
+        effectView.alpha = 0
+        presentingViewController.view.addSubview(effectView)
         
-        UIView.animate(withDuration: 0.5) {
-            blurEffectView.alpha = 1
+        UIView.animate(withDuration: 0.5) { [unowned self] in
+            switch self.popKit!.backgroundEffect {
+            case .blurDark, .blurLight:
+                effectView.alpha = 1
+            case .transparentOverlay(let alpha):
+                effectView.alpha = CGFloat(alpha)
+            }
+        }
+    }
+}
+
+class PopKitBackgroundEffectManager {
+    class func create(from effect: PopKitBackgroundEffect) -> UIView {
+        switch effect {
+        case .blurDark:
+            let blurEffect = UIBlurEffect(style: .dark)
+            return  UIVisualEffectView(effect: blurEffect)
+        case .blurLight:
+            let blurEffect = UIBlurEffect(style: .light)
+            return UIVisualEffectView(effect: blurEffect)
+        case .transparentOverlay(_):
+            let overlayView = UIView()
+            overlayView.backgroundColor = .black
+            return overlayView
         }
     }
 }
@@ -215,7 +249,29 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return transitionDuration ?? 0.4
+        return transitionDuration ?? 0.7
+    }
+    
+    fileprivate func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect) {
+        let animationDuration = transitionDuration(using: transitionContext)
+        controller.presentedViewController.view.frame = initialFrame
+        UIView.animate(withDuration: animationDuration, animations: {
+            controller.presentedViewController.view.frame = finalFrame
+            controller.presentedViewController.view.transform = CGAffineTransform.identity
+        }) { finished in
+            transitionContext.completeTransition(finished)
+        }
+    }
+    
+    fileprivate func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect) {
+        let animationDuration = transitionDuration(using: transitionContext)
+        controller.presentedViewController.view.frame = initialFrame
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: CGFloat(damping), initialSpringVelocity: CGFloat(velocity), options: .curveEaseInOut, animations: {
+            controller.presentedViewController.view.frame = finalFrame
+        }) { finished in
+            transitionContext.completeTransition(finished)
+        }
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -225,32 +281,41 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         transitionContext.containerView.addSubview(controller.presentedViewController.view)
         
-        let presentedFrame = containerController.view.frame 
+        let presentedFrame = containerController.view.frame
         var initialFrame = controller.frameOfPresentedViewInContainerView
         let finalFrame = controller.frameOfPresentedViewInContainerView
         
         switch kit.inAnimation {
-        case .fromTop:
+        case .slideInTop:
             initialFrame.origin.y = -presentedFrame.size.height
-        case .fromLeft:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
+        case .slideInLeft:
             initialFrame.origin.x = -presentedFrame.size.width
-        case .fromRight:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
+        case .slideInRight:
             initialFrame.origin.x = presentedFrame.size.width
-        case .fromBottom:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
+        case .slideInBottom:
             initialFrame.origin.y = presentedFrame.size.height
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
         case .zoomIn(let scale):
             controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
         case .zoomOut(let scale):
             controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
-        }
-        
-        let animationDuration = transitionDuration(using: transitionContext)
-        controller.presentedViewController.view.frame = initialFrame
-        UIView.animate(withDuration: animationDuration, animations: {
-            controller.presentedViewController.view.frame = finalFrame
-            controller.presentedViewController.view.transform = CGAffineTransform.identity
-        }) { finished in
-            transitionContext.completeTransition(finished)
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
+        case .bounceInTop(let damping, let velocity):
+            initialFrame.origin.y = -presentedFrame.size.height
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
+        case .bounceInLeft(let damping, let velocity):
+            initialFrame.origin.x = -presentedFrame.size.width
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
+        case .bounceInRight(let damping, let velocity):
+            initialFrame.origin.x = presentedFrame.size.width
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
+        case .bounceInBottom(let damping, let velocity):
+            initialFrame.origin.y = presentedFrame.size.height
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
         }
     }
 }
