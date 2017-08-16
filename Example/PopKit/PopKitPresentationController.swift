@@ -18,53 +18,72 @@ class PopKitPresentationController: UIPresentationController {
         self.popKit = popKit
         
         if let kit = popKit, let popup = kit.popupView as? UIView {
+            
             popup.translatesAutoresizingMaskIntoConstraints = false
             presentedViewController.view.addSubview(popup)
             
             kit.constraints.forEach({ (kitConstraint) in
-                
-                switch kitConstraint {
-                case .center(x: let x, y: let y):
-                    if let x = x {
-                        popup.centerXAnchor.constraint(equalTo: presentedViewController.view.centerXAnchor, constant: CGFloat(x)).isActive = true
-                        
-                    }
-                    
-                    if let y = y {
-                        popup.centerYAnchor.constraint(equalTo: presentedViewController.view.centerYAnchor, constant: CGFloat(y)).isActive = true
-                    }
-                    
-                case .edges(left: let left, right: let right, top: let top, bottom: let bottom):
-                    if let left = left {
-                        popup.leftAnchor.constraint(equalTo: presentedViewController.view.leftAnchor, constant: CGFloat(left)).isActive = true
-                    }
-                    
-                    if let right = right {
-                        popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -1 * CGFloat(right)).isActive = true
-                    }
-                    
-                    if let top = top {
-                        popup.topAnchor.constraint(equalTo: presentedViewController.view.topAnchor, constant: CGFloat(top)).isActive = true
-                    }
-                    
-                    if let bottom = bottom {
-                        popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -1 * CGFloat(bottom)).isActive = true
-                    }
-                    
-                case .width(let width):
-                    if let width = width {
-                        popup.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
-                    }
-                    
-                case .height(let height):
-                    if let height = height {
-                        popup.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
-                    }
-                }
+                activateConstraints(kitConstraint, popup)
             })
             
             presentedViewController.view.layoutIfNeeded()
+        }
+    }
+    
+    fileprivate func activateConstraints(_ kitConstraint: (PopKitConstaint), _ popup: UIView) {
+        switch kitConstraint {
+        case .center(x: let x, y: let y):
+            activateXAndYAnchor(x, y, popup)
             
+        case .edges(left: let left, right: let right, top: let top, bottom: let bottom):
+            activateEdges(left, right, top, bottom, popup)
+            
+        case .width(let width):
+            activateWidth(width, popup)
+            
+        case .height(let height):
+            activateHeight(height, popup)
+        }
+    }
+    
+    fileprivate func activateXAndYAnchor(_ x: Float?, _ y: Float?, _ popup: UIView) {
+        if let x = x {
+            popup.centerXAnchor.constraint(equalTo: presentedViewController.view.centerXAnchor, constant: CGFloat(x)).isActive = true
+            
+        }
+        
+        if let y = y {
+            popup.centerYAnchor.constraint(equalTo: presentedViewController.view.centerYAnchor, constant: CGFloat(y)).isActive = true
+        }
+    }
+    
+    fileprivate func activateEdges(_ left: Float?, _ right: Float?, _ top: Float?, _ bottom: Float?, _ popup: UIView) {
+        if let left = left {
+            popup.leftAnchor.constraint(equalTo: presentedViewController.view.leftAnchor, constant: CGFloat(left)).isActive = true
+        }
+        
+        if let right = right {
+            popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -1 * CGFloat(right)).isActive = true
+        }
+        
+        if let top = top {
+            popup.topAnchor.constraint(equalTo: presentedViewController.view.topAnchor, constant: CGFloat(top)).isActive = true
+        }
+        
+        if let bottom = bottom {
+            popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -1 * CGFloat(bottom)).isActive = true
+        }
+    }
+    
+    fileprivate func activateWidth(_ width: (Float?), _ popup: UIView) {
+        if let width = width {
+            popup.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+        }
+    }
+    
+    fileprivate func activateHeight(_ height: (Float?), _ popup: UIView) {
+        if let height = height {
+            popup.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
         }
     }
     
