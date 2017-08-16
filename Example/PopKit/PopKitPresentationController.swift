@@ -47,44 +47,23 @@ class PopKitPresentationController: UIPresentationController {
     }
     
     fileprivate func activateXAndYAnchor(_ x: Float?, _ y: Float?, _ popup: UIView) {
-        if let x = x {
-            popup.centerXAnchor.constraint(equalTo: presentedViewController.view.centerXAnchor, constant: CGFloat(x)).isActive = true
-            
-        }
-        
-        if let y = y {
-            popup.centerYAnchor.constraint(equalTo: presentedViewController.view.centerYAnchor, constant: CGFloat(y)).isActive = true
-        }
+        if let x = x {  popup.centerXAnchor.constraint(equalTo: presentedViewController.view.centerXAnchor, constant: CGFloat(x)).isActive = true  }
+        if let y = y {  popup.centerYAnchor.constraint(equalTo: presentedViewController.view.centerYAnchor, constant: CGFloat(y)).isActive = true }
     }
     
     fileprivate func activateEdges(_ left: Float?, _ right: Float?, _ top: Float?, _ bottom: Float?, _ popup: UIView) {
-        if let left = left {
-            popup.leftAnchor.constraint(equalTo: presentedViewController.view.leftAnchor, constant: CGFloat(left)).isActive = true
-        }
-        
-        if let right = right {
-            popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -1 * CGFloat(right)).isActive = true
-        }
-        
-        if let top = top {
-            popup.topAnchor.constraint(equalTo: presentedViewController.view.topAnchor, constant: CGFloat(top)).isActive = true
-        }
-        
-        if let bottom = bottom {
-            popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -1 * CGFloat(bottom)).isActive = true
-        }
+        if let left = left { popup.leftAnchor.constraint(equalTo: presentedViewController.view.leftAnchor, constant: CGFloat(left)).isActive = true  }
+        if let right = right { popup.rightAnchor.constraint(equalTo: presentedViewController.view.rightAnchor, constant: -1 * CGFloat(right)).isActive = true }
+        if let top = top { popup.topAnchor.constraint(equalTo: presentedViewController.view.topAnchor, constant: CGFloat(top)).isActive = true  }
+        if let bottom = bottom { popup.bottomAnchor.constraint(equalTo: presentedViewController.view.bottomAnchor, constant: -1 * CGFloat(bottom)).isActive = true }
     }
     
     fileprivate func activateWidth(_ width: (Float?), _ popup: UIView) {
-        if let width = width {
-            popup.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
-        }
+        if let width = width { popup.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true }
     }
     
     fileprivate func activateHeight(_ height: (Float?), _ popup: UIView) {
-        if let height = height {
-            popup.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
-        }
+        if let height = height { popup.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true }
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
@@ -106,7 +85,7 @@ class PopKitPresentationController: UIPresentationController {
     
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
-        effectView = PopKitBackgroundEffectManager.create(from: popKit!.backgroundEffect)
+        effectView = PopKitBackgroundEffectFactory.create(from: popKit!.backgroundEffect)
         effectView.frame = presentingViewController.view.frame
         effectView.alpha = 0
         presentingViewController.view.addSubview(effectView)
@@ -122,19 +101,4 @@ class PopKitPresentationController: UIPresentationController {
     }
 }
 
-class PopKitBackgroundEffectManager {
-    class func create(from effect: PopKitBackgroundEffect) -> UIView {
-        switch effect {
-        case .blurDark:
-            let blurEffect = UIBlurEffect(style: .dark)
-            return  UIVisualEffectView(effect: blurEffect)
-        case .blurLight:
-            let blurEffect = UIBlurEffect(style: .light)
-            return UIVisualEffectView(effect: blurEffect)
-        case .transparentOverlay(_):
-            let overlayView = UIView()
-            overlayView.backgroundColor = .black
-            return overlayView
-        }
-    }
-}
+

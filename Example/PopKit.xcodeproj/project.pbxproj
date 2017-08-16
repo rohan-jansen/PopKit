@@ -21,6 +21,7 @@
 		C073FA251F4439C2002CB7A5 /* PopoKitDismissingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA241F4439C2002CB7A5 /* PopoKitDismissingAnimator.swift */; };
 		C073FA271F443E7E002CB7A5 /* PopKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA261F443E7E002CB7A5 /* PopKit.swift */; };
 		C073FA291F443EAF002CB7A5 /* PopKitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA281F443EAF002CB7A5 /* PopKitEnums.swift */; };
+		C073FA2B1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA2A1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift */; };
 		C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B39AF01F41AD50002978BC /* PopKit.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		C073FA241F4439C2002CB7A5 /* PopoKitDismissingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoKitDismissingAnimator.swift; sourceTree = "<group>"; };
 		C073FA261F443E7E002CB7A5 /* PopKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKit.swift; sourceTree = "<group>"; };
 		C073FA281F443EAF002CB7A5 /* PopKitEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitEnums.swift; sourceTree = "<group>"; };
+		C073FA2A1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitBackgroundEffectFactory.swift; sourceTree = "<group>"; };
 		C0B39AF01F41AD50002978BC /* PopKit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopKit.storyboard; sourceTree = "<group>"; };
 		C6C1DDBEE643E24CE7040CC6 /* Pods-PopKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DFCCF4284F8DE6A006C1FF69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				C073FA261F443E7E002CB7A5 /* PopKit.swift */,
 				C073FA281F443EAF002CB7A5 /* PopKitEnums.swift */,
+				C073FA2A1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift */,
 			);
 			name = Kit;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				C073FA231F4438B9002CB7A5 /* PopKitPresentationAnimator.swift in Sources */,
 				C073FA1F1F443871002CB7A5 /* PopKitPresentationController.swift in Sources */,
 				C073FA291F443EAF002CB7A5 /* PopKitEnums.swift in Sources */,
+				C073FA2B1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift in Sources */,
 				C073FA251F4439C2002CB7A5 /* PopoKitDismissingAnimator.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

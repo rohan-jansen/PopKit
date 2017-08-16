@@ -10,17 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var testView: PopView {
-        return TestView()
-    }
-    
     var popkit: PopKit {
         return PopKitBuilder() {
-            $0.constraints = [.edges(left: 0, right: 0, top: 0, bottom: nil), .height(75)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200) //.center(x: 0, y: 0), .width(300), .height(300)
-            $0.inAnimation = .slideTop // .bounceInTop(damping: 0.86, velocity: 2)
-            $0.outAnimation = .slideBottom
+            $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)] // .edges(left: 0, right: 50, top: 0, bottom: 0) .center(x: 0, y: 0), .width(200), .height(200) //.center(x: 0, y: 0), .width(300), .height(300)
+            $0.inAnimation = .bounceTop(damping: 0.86, velocity: 2) //.zoomOut(1.3) // .bounceTop(damping: 0.86, velocity: 2) // .bounceInTop(damping: 0.86, velocity: 2) //.edges(left: 0, right: 0, top: 0, bottom: nil), .height(75)
+            $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2) //.zoomIn(1.1) // .slideTop
             $0.backgroundEffect = .blurDark // .transparentOverlay(0.4)
-            $0.popupView = testView
+            $0.popupView = TestView()
         }
     }
 
@@ -34,7 +30,7 @@ class TestView: UIView, PopView {
     init() {
         super.init(frame: .zero)
         backgroundColor = .white
-//        layer.cornerRadius = 15
+        layer.cornerRadius = 15
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
         

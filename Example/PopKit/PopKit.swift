@@ -30,7 +30,9 @@ class PopKit {
             self?.dismiss()
         }
     }
-    
+}
+
+extension PopKit {
     func show() {
         let container = PopKitContainerController.fromStoryboard()
         container.popKit = self
