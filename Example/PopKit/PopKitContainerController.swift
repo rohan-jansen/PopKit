@@ -33,6 +33,7 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PopKitDismissingAnimator(with: popKit!)
     }
+    
 }
 
 

@@ -8,6 +8,17 @@
 
 import UIKit
 
+extension Bundle {
+    
+    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T where T: UIView {
+        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
+            return view
+        }
+        
+        return UIView() as! T
+    }
+}
+
 class ViewController: UIViewController {
 
     var sideMenu: PopKit {
@@ -22,11 +33,11 @@ class ViewController: UIViewController {
     
     var topNotification: PopKit {
         return PopKitBuilder() {
-            $0.constraints = [.edges(left: 0, right: 0, top: 0, bottom:nil), .height(75)]
-            $0.inAnimation = .bounceTop(damping: 0.72, velocity: 2)
+            $0.constraints = [.edges(left: 0, right: 0, top: 0, bottom:nil), .height(90)]
+            $0.inAnimation = .bounceTop(damping: 0.9, velocity: 2)
             $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
             $0.backgroundEffect = .blurDark
-            $0.popupView = TestView(radius: 0)
+            $0.popupView = Bundle.loadView(fromNib: "NotificationView", withType: NotificationView.self)
         }
     }
     

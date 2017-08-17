@@ -22,6 +22,8 @@
 		C073FA271F443E7E002CB7A5 /* PopKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA261F443E7E002CB7A5 /* PopKit.swift */; };
 		C073FA291F443EAF002CB7A5 /* PopKitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA281F443EAF002CB7A5 /* PopKitEnums.swift */; };
 		C073FA2B1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA2A1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift */; };
+		C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A83D031F45BD0400F96B73 /* NotificationView.xib */; };
+		C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83D051F45BE6900F96B73 /* NotificationView.swift */; };
 		C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B39AF01F41AD50002978BC /* PopKit.storyboard */; };
 		C0D9ED951F45ABAE004ECD5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		C073FA261F443E7E002CB7A5 /* PopKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKit.swift; sourceTree = "<group>"; };
 		C073FA281F443EAF002CB7A5 /* PopKitEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitEnums.swift; sourceTree = "<group>"; };
 		C073FA2A1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitBackgroundEffectFactory.swift; sourceTree = "<group>"; };
+		C0A83D031F45BD0400F96B73 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		C0A83D051F45BE6900F96B73 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C0B39AF01F41AD50002978BC /* PopKit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopKit.storyboard; sourceTree = "<group>"; };
 		C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		C6C1DDBEE643E24CE7040CC6 /* Pods-PopKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */,
+				C0A83D031F45BD0400F96B73 /* NotificationView.xib */,
+				C0A83D051F45BE6900F96B73 /* NotificationView.swift */,
 			);
 			name = "Example Views";
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */,
+				C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +440,7 @@
 				C073FA211F443895002CB7A5 /* PopKitContainerController.swift in Sources */,
 				C073FA231F4438B9002CB7A5 /* PopKitPresentationAnimator.swift in Sources */,
 				C073FA1F1F443871002CB7A5 /* PopKitPresentationController.swift in Sources */,
+				C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */,
 				C073FA291F443EAF002CB7A5 /* PopKitEnums.swift in Sources */,
 				C073FA2B1F444974002CB7A5 /* PopKitBackgroundEffectFactory.swift in Sources */,
 				C073FA251F4439C2002CB7A5 /* PopoKitDismissingAnimator.swift in Sources */,
