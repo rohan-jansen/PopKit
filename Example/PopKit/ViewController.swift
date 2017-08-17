@@ -63,11 +63,11 @@ class ViewController: UIViewController {
     
     var bounceFromTop: PopKit {
         return PopKitBuilder() {
-            $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
+            $0.constraints = [.center(x: 0, y: 0), .width(300), .height(350)]
             $0.inAnimation = .bounceTop(damping: 0.72, velocity: 2)
             $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
             $0.backgroundEffect = .blurDark
-            $0.popupView = TestView()
+            $0.popupView = Bundle.loadView(fromNib: "CenterModalView", withType: CenterModalView.self)
         }
     }
     var zoomIn: PopKit {

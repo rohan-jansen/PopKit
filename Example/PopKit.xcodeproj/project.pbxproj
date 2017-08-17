@@ -15,6 +15,8 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A002E607311C0FF2D672617D /* Pods_PopKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA7616A517CDDFA44411B4B /* Pods_PopKit_Example.framework */; };
 		AA4C7ADFEB294E229B995488 /* Pods_PopKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E1E408AC84FFD64E866CB /* Pods_PopKit_Tests.framework */; };
+		C0336C411F45DD8F00CBD160 /* CenterModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0336C401F45DD8F00CBD160 /* CenterModalView.xib */; };
+		C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0336C421F45DD9800CBD160 /* CenterModalView.swift */; };
 		C073FA1F1F443871002CB7A5 /* PopKitPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA1E1F443871002CB7A5 /* PopKitPresentationController.swift */; };
 		C073FA211F443895002CB7A5 /* PopKitContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA201F443895002CB7A5 /* PopKitContainerController.swift */; };
 		C073FA231F4438B9002CB7A5 /* PopKitPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073FA221F4438B9002CB7A5 /* PopKitPresentationAnimator.swift */; };
@@ -55,6 +57,8 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		9EC07B73E1F2F3E452795B5A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B32B66473CA0E10CB401519D /* PopKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopKit.podspec; path = ../PopKit.podspec; sourceTree = "<group>"; };
+		C0336C401F45DD8F00CBD160 /* CenterModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterModalView.xib; sourceTree = "<group>"; };
+		C0336C421F45DD9800CBD160 /* CenterModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterModalView.swift; sourceTree = "<group>"; };
 		C073FA1E1F443871002CB7A5 /* PopKitPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitPresentationController.swift; sourceTree = "<group>"; };
 		C073FA201F443895002CB7A5 /* PopKitContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitContainerController.swift; sourceTree = "<group>"; };
 		C073FA221F4438B9002CB7A5 /* PopKitPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopKitPresentationAnimator.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 				C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */,
 				C0A83D031F45BD0400F96B73 /* NotificationView.xib */,
 				C0A83D051F45BE6900F96B73 /* NotificationView.swift */,
+				C0336C401F45DD8F00CBD160 /* CenterModalView.xib */,
+				C0336C421F45DD9800CBD160 /* CenterModalView.swift */,
 			);
 			name = "Example Views";
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				C0B39AF11F41AD50002978BC /* PopKit.storyboard in Resources */,
 				C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */,
+				C0336C411F45DD8F00CBD160 /* CenterModalView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C073FA211F443895002CB7A5 /* PopKitContainerController.swift in Sources */,
+				C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */,
 				C073FA231F4438B9002CB7A5 /* PopKitPresentationAnimator.swift in Sources */,
 				C073FA1F1F443871002CB7A5 /* PopKitPresentationController.swift in Sources */,
 				C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */,
