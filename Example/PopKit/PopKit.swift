@@ -17,7 +17,8 @@ func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
 }
 
 class PopKit {
-    var popupView: PopView?
+    var popupView: UIView?
+    var popupViewController: UIViewController?
     var dismissAction: (() -> Void)?
     var mainAction: (() -> Void)?
     var inAnimation: PopKitAnimation = .slideTop
@@ -49,16 +50,14 @@ extension PopKit {
     }
 }
 
-protocol PopView { }
-
 extension Notification.Name {
     static var dismissPopKit: NSNotification.Name {
         return Notification.Name("DismissPopKit")
     }
 }
 
-extension PopView where Self: UIView {
-    func dismiss() {
+extension PopKit {
+    static func dismiss() {
         NotificationCenter.default.post(name: .dismissPopKit, object: nil)
     }
 }

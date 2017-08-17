@@ -12,11 +12,11 @@ class ViewController: UIViewController {
 
     var sideMenu: PopKit {
         return PopKitBuilder() {
-            $0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(300)]
-            $0.inAnimation = .slideLeft
-            $0.outAnimation = .slideRight
-            $0.backgroundEffect = .blurLight
-            $0.popupView = TestView(radius: 0)
+            $0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(275)]
+            $0.inAnimation = .bounceLeft(damping: 0.82, velocity: 2)
+            $0.outAnimation = .bounceRight(damping: 0.72, velocity: 2)
+            $0.backgroundEffect = .blurDark
+            $0.popupViewController = SideMenuViewController.fromStoryboard()
         }
     }
     
@@ -92,20 +92,13 @@ class ViewController: UIViewController {
     }
 }
 
-class TestView: UIView, PopView {
+class TestView: UIView {
     init(radius: Float = 15) {
         super.init(frame: .zero)
         backgroundColor = .white
         layer.cornerRadius = CGFloat(radius)
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 0.5
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
-        addGestureRecognizer(tap)
-    }
-    
-    func hide() {
-        dismiss()
     }
     
     required init?(coder aDecoder: NSCoder) {

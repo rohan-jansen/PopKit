@@ -103,8 +103,55 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="171.36431784107947"/>
         </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="FKp-yN-b6M">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuViewController" id="ZHP-Z3-1CE" customClass="SideMenuViewController" customModule="PopKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Mg-jh-iI7"/>
+                        <viewControllerLayoutGuide type="bottom" id="5mg-82-p27"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1jK-lc-Sv7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mb7-kx-coc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Miniclip-8-Ball-Pool-Avatar-7" translatesAutoresizingMaskIntoConstraints="NO" id="37s-aK-tzu">
+                                        <rect key="frame" x="112" y="70" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="sec-N6-fGo"/>
+                                            <constraint firstAttribute="width" constant="150" id="vut-US-8U5"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.34236669540405273" green="0.53747260570526123" blue="0.75664269924163818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="37s-aK-tzu" firstAttribute="centerX" secondItem="mb7-kx-coc" secondAttribute="centerX" id="3Ji-Vh-bQZ"/>
+                                    <constraint firstItem="37s-aK-tzu" firstAttribute="top" secondItem="mb7-kx-coc" secondAttribute="top" constant="70" id="7Lc-yS-a1T"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34236669540405273" green="0.53747260570526123" blue="0.75664269924163818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mb7-kx-coc" firstAttribute="top" secondItem="1jK-lc-Sv7" secondAttribute="top" id="WbK-hn-ckp"/>
+                            <constraint firstItem="mb7-kx-coc" firstAttribute="leading" secondItem="1jK-lc-Sv7" secondAttribute="leading" id="YBr-Lv-Muz"/>
+                            <constraint firstAttribute="trailing" secondItem="mb7-kx-coc" secondAttribute="trailing" id="da1-7q-GdI"/>
+                            <constraint firstItem="5mg-82-p27" firstAttribute="top" secondItem="mb7-kx-coc" secondAttribute="bottom" id="ogL-Zp-tR1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profilePictureView" destination="37s-aK-tzu" id="vqN-Ct-5jC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAt-hj-Pxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="170.46476761619192"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Miniclip-8-Ball-Pool-Avatar-7" width="960" height="960"/>
         <image name="startscreen-background" width="640" height="1136"/>
     </resources>
 </document>

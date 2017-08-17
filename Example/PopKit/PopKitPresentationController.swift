@@ -17,17 +17,42 @@ class PopKitPresentationController: UIPresentationController {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         self.popKit = popKit
         
-        if let kit = popKit, let popup = kit.popupView as? UIView {
+        if let kit = popKit {
             
-            popup.translatesAutoresizingMaskIntoConstraints = false
-            presentedViewController.view.addSubview(popup)
+            if let popup = kit.popupView {
+                
+                popup.translatesAutoresizingMaskIntoConstraints = false
+                presentedViewController.view.addSubview(popup)
+                
+                kit.constraints.forEach({ (kitConstraint) in
+                    activateConstraints(kitConstraint, popup)
+                })
+                
+                presentedViewController.view.layoutIfNeeded()
+                
+            } else if let popupVc = kit.popupViewController {
+                popupVc.view.translatesAutoresizingMaskIntoConstraints = false
+                presentedViewController.addChildViewController(popupVc)
+                presentedViewController.view.addSubview(popupVc.view)
+                popupVc.didMove(toParentViewController: presentedViewController)
+                
+                kit.constraints.forEach({ (kitConstraint) in
+                    activateConstraints(kitConstraint, popupVc.view)
+                })
+                
+                presentedViewController.view.layoutIfNeeded()
+            }
             
-            kit.constraints.forEach({ (kitConstraint) in
-                activateConstraints(kitConstraint, popup)
-            })
             
-            presentedViewController.view.layoutIfNeeded()
+            //TODO: this needs to change
+            let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+            presentedViewController.view.addGestureRecognizer(tap)
+            
         }
+    }
+    
+    @objc fileprivate func hide() {
+        PopKit.dismiss()
     }
     
     fileprivate func activateConstraints(_ kitConstraint: (PopKitConstaint), _ popup: UIView) {
@@ -67,11 +92,15 @@ class PopKitPresentationController: UIPresentationController {
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
-        guard let popupView = popKit?.popupView else {
-            return .zero
+        if let popupView = popKit?.popupView  {
+            return popupView.frame
         }
         
-        return (popupView as! UIView).frame
+        if let popupView = popKit?.popupViewController?.view  {
+            return popupView.frame
+        }
+        
+        return .zero
     }
     
     override func dismissalTransitionWillBegin() {
@@ -94,7 +123,6 @@ class PopKitPresentationController: UIPresentationController {
         effectView.rightAnchor.constraint(equalTo: presentingViewController.view.rightAnchor, constant: -1 * CGFloat(0)).isActive = true
         effectView.topAnchor.constraint(equalTo: presentingViewController.view.topAnchor, constant: CGFloat(0)).isActive = true
         effectView.bottomAnchor.constraint(equalTo: presentingViewController.view.bottomAnchor, constant: -1 * CGFloat(0)).isActive = true
-        
         
         UIView.animate(withDuration: 0.7) { [unowned self] in
             switch self.popKit!.backgroundEffect {
