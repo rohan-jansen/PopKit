@@ -86,9 +86,15 @@ class PopKitPresentationController: UIPresentationController {
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
         effectView = PopKitBackgroundEffectFactory.create(from: popKit!.backgroundEffect)
-        effectView.frame = presentingViewController.view.frame
+        effectView.translatesAutoresizingMaskIntoConstraints = false
         effectView.alpha = 0
         presentingViewController.view.addSubview(effectView)
+        
+        effectView.leftAnchor.constraint(equalTo: presentingViewController.view.leftAnchor, constant: CGFloat(0)).isActive = true
+        effectView.rightAnchor.constraint(equalTo: presentingViewController.view.rightAnchor, constant: -1 * CGFloat(0)).isActive = true
+        effectView.topAnchor.constraint(equalTo: presentingViewController.view.topAnchor, constant: CGFloat(0)).isActive = true
+        effectView.bottomAnchor.constraint(equalTo: presentingViewController.view.bottomAnchor, constant: -1 * CGFloat(0)).isActive = true
+        
         
         UIView.animate(withDuration: 0.7) { [unowned self] in
             switch self.popKit!.backgroundEffect {
