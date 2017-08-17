@@ -62,32 +62,32 @@ class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning,
         
         switch kit.outAnimation {
         case .slideTop:
-            finalFrame.origin.y = toControllerViewFrame.size.height
+            finalFrame.origin.y = toControllerViewFrame.size.height * 2
             animateSlide(transitionContext, controller, CGPoint(x: containerController.view.center.x, y: finalFrame.origin.y))
         case .slideLeft:
-            finalFrame.origin.x = toControllerViewFrame.size.width
+            finalFrame.origin.x = toControllerViewFrame.size.width * 2
             animateSlide(transitionContext, controller, CGPoint(x: finalFrame.origin.x, y: containerController.view.center.y))
         case .slideRight:
-            finalFrame.origin.x = -toControllerViewFrame.size.width
+            finalFrame.origin.x = -toControllerViewFrame.size.width * 2
             animateSlide(transitionContext, controller, CGPoint(x: finalFrame.origin.x, y: containerController.view.center.y))
         case .slideBottom:
-            finalFrame.origin.y = -toControllerViewFrame.size.height
+            finalFrame.origin.y = -toControllerViewFrame.size.height * 2
             animateSlide(transitionContext, controller, CGPoint(x: containerController.view.center.x, y: finalFrame.origin.y))
         case .zoomIn(let scale):
             animateScale(transitionContext, controller, scale)
         case .zoomOut(let scale):
             animateScale(transitionContext, controller, scale)
         case .bounceTop(let damping, let velocity):
-            finalFrame.origin.y = toControllerViewFrame.size.height
+            finalFrame.origin.y = toControllerViewFrame.size.height * 2
             animateBounce(damping, velocity, transitionContext, controller, CGPoint(x: containerController.view.center.x, y: finalFrame.origin.y))
         case .bounceLeft(let damping, let velocity):
-            finalFrame.origin.x = toControllerViewFrame.size.width
+            finalFrame.origin.x = toControllerViewFrame.size.width * 2
             animateBounce(damping, velocity, transitionContext, controller, CGPoint(x: finalFrame.origin.x, y: containerController.view.center.y))
         case .bounceRight(let damping, let velocity):
-            finalFrame.origin.x = -toControllerViewFrame.size.width
+            finalFrame.origin.x = -toControllerViewFrame.size.width * 2
             animateBounce(damping, velocity, transitionContext, controller, CGPoint(x: finalFrame.origin.x, y: containerController.view.center.y))
         case .bounceBottom(let damping, let velocity):
-            finalFrame.origin.y = -toControllerViewFrame.size.height
+            finalFrame.origin.y = -toControllerViewFrame.size.height * 2
             animateBounce(damping, velocity, transitionContext, controller, CGPoint(x: containerController.view.center.x, y: finalFrame.origin.y))
         }
     }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,6 +25,54 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startscreen-background" translatesAutoresizingMaskIntoConstraints="NO" id="MXa-S4-5uR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3T-cJ-bz9">
+                                <rect key="frame" x="16" y="437" width="73" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Side menu"/>
+                                <connections>
+                                    <action selector="showSideMenu:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMn-Yu-qDj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuc-uP-zRm">
+                                <rect key="frame" x="16" y="589" width="115" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Bounce from top"/>
+                                <connections>
+                                    <action selector="showBounceFromTop:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wqG-u6-DVM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISY-z2-1HE">
+                                <rect key="frame" x="16" y="513" width="93" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Bottom menu"/>
+                                <connections>
+                                    <action selector="showBottomMenu:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="W0y-uD-gCL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-tB-lgA">
+                                <rect key="frame" x="16" y="475" width="106" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Top notification"/>
+                                <connections>
+                                    <action selector="showTopNotification:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="q1Q-Ug-lqg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2kq-sG-tM9">
+                                <rect key="frame" x="16" y="551" width="123" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Slide from bottom"/>
+                                <connections>
+                                    <action selector="showSlideFromBottom:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b7q-e2-tTT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8f-c2-rOP">
+                                <rect key="frame" x="16" y="627" width="56" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Zoom in"/>
+                                <connections>
+                                    <action selector="showZoomIn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="z8L-H6-ba6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -31,6 +80,22 @@
                             <constraint firstItem="MXa-S4-5uR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6lR-rg-EQv"/>
                             <constraint firstAttribute="trailing" secondItem="MXa-S4-5uR" secondAttribute="trailing" id="7ku-c6-Ejb"/>
                             <constraint firstItem="MXa-S4-5uR" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Bav-5i-aru"/>
+                            <constraint firstItem="2kq-sG-tM9" firstAttribute="top" secondItem="ISY-z2-1HE" secondAttribute="bottom" constant="8" id="GWq-i3-OCR"/>
+                            <constraint firstItem="ISY-z2-1HE" firstAttribute="top" secondItem="67Q-tB-lgA" secondAttribute="bottom" constant="8" id="PqL-m5-ASQ"/>
+                            <constraint firstItem="2kq-sG-tM9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ta2-B3-dl3"/>
+                            <constraint firstItem="67Q-tB-lgA" firstAttribute="top" secondItem="C3T-cJ-bz9" secondAttribute="bottom" constant="8" id="UCb-7E-e7v"/>
+                            <constraint firstItem="2kq-sG-tM9" firstAttribute="top" secondItem="ISY-z2-1HE" secondAttribute="bottom" constant="8" id="Wwb-ua-8yD"/>
+                            <constraint firstItem="67Q-tB-lgA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="a2b-bb-3rc"/>
+                            <constraint firstItem="67Q-tB-lgA" firstAttribute="top" secondItem="C3T-cJ-bz9" secondAttribute="bottom" constant="8" id="gEe-An-5MT"/>
+                            <constraint firstItem="zuc-uP-zRm" firstAttribute="top" secondItem="2kq-sG-tM9" secondAttribute="bottom" constant="8" id="hWB-II-70U"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="c8f-c2-rOP" secondAttribute="bottom" constant="10" id="hZG-Yt-tfq"/>
+                            <constraint firstItem="ISY-z2-1HE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="jQN-kV-IM4"/>
+                            <constraint firstItem="c8f-c2-rOP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="kT9-Sm-XVs"/>
+                            <constraint firstItem="ISY-z2-1HE" firstAttribute="top" secondItem="67Q-tB-lgA" secondAttribute="bottom" constant="8" id="mFI-nW-HaA"/>
+                            <constraint firstItem="C3T-cJ-bz9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="otA-sf-5ou"/>
+                            <constraint firstItem="zuc-uP-zRm" firstAttribute="top" secondItem="2kq-sG-tM9" secondAttribute="bottom" constant="8" id="pjZ-lh-Yfr"/>
+                            <constraint firstItem="zuc-uP-zRm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="sGg-nO-bzl"/>
+                            <constraint firstItem="c8f-c2-rOP" firstAttribute="top" secondItem="zuc-uP-zRm" secondAttribute="bottom" constant="8" id="yJJ-2w-2Gm"/>
                         </constraints>
                     </view>
                 </viewController>
