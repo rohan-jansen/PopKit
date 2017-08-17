@@ -21,7 +21,7 @@ class SideMenuViewController : UIViewController {
         super.viewDidLayoutSubviews()
         
         profilePictureView.layer.borderColor = UIColor.white.cgColor
-        profilePictureView.layer.borderWidth = 1
+        profilePictureView.layer.borderWidth = 3
         profilePictureView.layer.cornerRadius = profilePictureView.frame.width / 2
         profilePictureView.clipsToBounds = true
     }
