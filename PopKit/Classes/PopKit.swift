@@ -10,21 +10,21 @@ import Foundation
 import UIKit
 
 
-func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
+public func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
     let kit = PopKit()
     builder(kit)
     return kit
 }
 
-class PopKit {
-    var popupView: UIView?
-    var popupViewController: UIViewController?
-    var dismissAction: (() -> Void)?
-    var mainAction: (() -> Void)?
-    var inAnimation: PopKitAnimation = .slideTop
-    var outAnimation: PopKitAnimation = .slideBottom
-    var backgroundEffect: PopKitBackgroundEffect = .blurLight
-    var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
+public class PopKit {
+    public var popupView: UIView?
+    public var popupViewController: UIViewController?
+    public var dismissAction: (() -> Void)?
+    public var mainAction: (() -> Void)?
+    public var inAnimation: PopKitAnimation = .slideTop
+    public var outAnimation: PopKitAnimation = .slideBottom
+    public var backgroundEffect: PopKitBackgroundEffect = .blurLight
+    public var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
     
     init() {
         NotificationCenter.default.addObserver(forName: .dismissPopKit, object: nil, queue: .main) { [weak self] (notification) in
@@ -34,7 +34,7 @@ class PopKit {
 }
 
 extension PopKit {
-    func show() {
+    public func show() {
         let container = PopKitContainerController.fromStoryboard()
         container.popKit = self
         
@@ -43,7 +43,7 @@ extension PopKit {
         }
     }
     
-    func dismiss() {
+    public func dismiss() {
         if let root = UIApplication.shared.keyWindow?.rootViewController, let presented = root.presentedViewController {
             presented.dismiss(animated: true, completion: nil)
         }
@@ -51,7 +51,7 @@ extension PopKit {
 }
 
 extension Notification.Name {
-    static var dismissPopKit: NSNotification.Name {
+    public static var dismissPopKit: NSNotification.Name {
         return Notification.Name("DismissPopKit")
     }
 }

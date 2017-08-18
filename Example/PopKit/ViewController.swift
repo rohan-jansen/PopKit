@@ -21,7 +21,7 @@ extension Bundle {
 }
 
 class ViewController: UIViewController {
-
+    
     var sideMenu: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(275)]

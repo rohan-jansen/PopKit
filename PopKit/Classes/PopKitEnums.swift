@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum PopKitConstaint {
+public enum PopKitConstaint {
     case edges(left: Float?, right: Float?, top: Float?, bottom: Float?)
     case width(Float?)
     case height(Float?)
     case center(x: Float?, y: Float?)
 }
 
-enum PopKitAnimation {
+public enum PopKitAnimation {
     case zoomIn(Float)
     case zoomOut(Float)
     case slideTop
@@ -28,7 +28,7 @@ enum PopKitAnimation {
     case bounceBottom(damping: Float, velocity: Float)
 }
 
-enum PopKitBackgroundEffect {
+public enum PopKitBackgroundEffect {
     case blurLight
     case blurDark
     case transparentOverlay(Float)
