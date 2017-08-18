@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PopKit/Classes/**/*"
+  "source_files": "PopKit/Classes/**/*",
+  "resource_bundles": {
+    "PopKit": [
+      "PopKit/Classes/*.storyboard"
+    ]
+  }
 }
