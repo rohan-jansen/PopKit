@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'PopKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of PopKit.'
+  s.summary          = 'A flexible framework as a one size fits all solution for popups, modals, notifications and menus'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A flexible framework as a one size fits all solution for popups, modals, notifications and menus
                        DESC
 
   s.homepage         = 'https://github.com/rohan-jansen/PopKit'
@@ -31,10 +31,6 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'PopKit/Classes/**/*'
-
-    s.resource_bundles = {
-        'PopKit' => ['Classes/*.storyboard']
-    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
