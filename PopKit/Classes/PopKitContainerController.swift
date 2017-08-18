@@ -13,7 +13,13 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
     var popKit: PopKit?
     
     static func fromStoryboard() -> PopKitContainerController {
-        return UIStoryboard(name: String(describing: PopKit.self), bundle: nil).instantiateViewController(withIdentifier: String(describing: PopKitContainerController.self)) as! PopKitContainerController
+        return PopKitContainerController(nibName: nil, bundle: nil)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        transitioningDelegate = self
+        modalPresentationStyle = .custom
     }
     
     required init?(coder aDecoder: NSCoder) {

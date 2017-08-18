@@ -26,14 +26,14 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'rohan-jansen' => 'rohan@flatcircle.io' }
   s.source           = { :git => 'https://github.com/rohan-jansen/PopKit.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/rohan_jansen
+  s.social_media_url = 'https://twitter.com/rohan_jansen'
 
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'PopKit/Classes/**/*'
 
     s.resource_bundles = {
-        'PopKit' => ['PopKit/Classes/*.storyboard']
+        'PopKit' => ['Classes/*.storyboard']
     }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

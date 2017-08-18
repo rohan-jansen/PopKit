@@ -15,13 +15,14 @@
     "git": "https://github.com/rohan-jansen/PopKit.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/rohan_jansen",
   "platforms": {
     "ios": "11.0"
   },
   "source_files": "PopKit/Classes/**/*",
   "resource_bundles": {
     "PopKit": [
-      "PopKit/Classes/*.storyboard"
+      "Classes/*.storyboard"
     ]
   }
 }
