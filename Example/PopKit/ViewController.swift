@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             $0.inAnimation = .bounceTop(damping: 0.9, velocity: 2)
             $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
             $0.backgroundEffect = .blurDark
-            $0.popupView = Bundle.loadView(fromNib: "NotificationView", withType: NotificationView.self)
+            $0.popupView = NotificationView.loadView()
         }
     }
     
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             $0.inAnimation = .bounceTop(damping: 0.72, velocity: 2)
             $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
             $0.backgroundEffect = .blurDark
-            $0.popupView = Bundle.loadView(fromNib: "CenterModalView", withType: CenterModalView.self)
+            $0.popupView = CenterModalView.loadView()
         }
     }
     var zoomIn: PopKit {

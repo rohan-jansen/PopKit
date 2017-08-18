@@ -12,6 +12,10 @@ import UIKit
 class NotificationView: UIView {
     @IBOutlet var notificationIcon: UIImageView!
     
+    static func loadView() -> NotificationView {
+        return Bundle.loadView(fromNib: String(describing: NotificationView.self), withType: NotificationView.self)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
