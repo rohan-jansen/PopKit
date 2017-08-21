@@ -21,9 +21,9 @@ public class PopKit {
     public var popupViewController: UIViewController?
     public var dismissAction: (() -> Void)?
     public var mainAction: (() -> Void)?
-    public var inAnimation: PopKitAnimation = .slideTop
-    public var outAnimation: PopKitAnimation = .slideBottom
-    public var backgroundEffect: PopKitBackgroundEffect = .blurLight
+    public var inAnimation: PopKitAnimation = .slideFromTop(animationOption: .curveEaseInOut)
+    public var outAnimation: PopKitAnimation = .slideFromBottom(animationOption: .curveEaseInOut)
+    public var backgroundEffect: PopKitBackgroundEffect = .blurDark
     public var constraints: [PopKitConstaint] = [.edges(left: 0, right: 0, top: 0, bottom: 0)]
     
     init() {

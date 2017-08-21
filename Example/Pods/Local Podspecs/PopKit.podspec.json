@@ -1,8 +1,8 @@
 {
   "name": "PopKit",
   "version": "0.1.0",
-  "summary": "A short description of PopKit.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "A flexible framework as a one size fits all solution for popups, modals, notifications and menus",
+  "description": "A flexible framework as a one size fits all solution for popups, modals, notifications and menus",
   "homepage": "https://github.com/rohan-jansen/PopKit",
   "license": {
     "type": "MIT",
@@ -19,10 +19,5 @@
   "platforms": {
     "ios": "11.0"
   },
-  "source_files": "PopKit/Classes/**/*",
-  "resource_bundles": {
-    "PopKit": [
-      "Classes/*.storyboard"
-    ]
-  }
+  "source_files": "PopKit/Classes/**/*"
 }

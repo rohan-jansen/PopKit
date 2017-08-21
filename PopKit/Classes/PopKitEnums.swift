@@ -16,16 +16,16 @@ public enum PopKitConstaint {
 }
 
 public enum PopKitAnimation {
-    case zoomIn(Float)
-    case zoomOut(Float)
-    case slideTop
-    case slideLeft
-    case slideRight
-    case slideBottom
-    case bounceTop(damping: Float, velocity: Float)
-    case bounceLeft(damping: Float, velocity: Float)
-    case bounceRight(damping: Float, velocity: Float)
-    case bounceBottom(damping: Float, velocity: Float)
+    case zoomIn(Float, animationOption: UIViewAnimationOptions)
+    case zoomOut(Float, animationOption: UIViewAnimationOptions)
+    case slideFromTop(animationOption: UIViewAnimationOptions)
+    case slideFromLeft(animationOption: UIViewAnimationOptions)
+    case slideFromRight(animationOption: UIViewAnimationOptions)
+    case slideFromBottom(animationOption: UIViewAnimationOptions)
+    case bounceFromTop(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
+    case bounceFromLeft(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
+    case bounceFromRight(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
+    case bounceFromBottom(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
 }
 
 public enum PopKitBackgroundEffect {

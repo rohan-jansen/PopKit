@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     var sideMenu: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(275)]
-            $0.inAnimation = .bounceLeft(damping: 0.82, velocity: 2)
-            $0.outAnimation = .bounceRight(damping: 0.72, velocity: 2)
+            $0.inAnimation = .bounceFromLeft(damping: 0.82, velocity: 2, animationOption: .curveEaseInOut)
+            $0.outAnimation = .bounceFromRight(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
             $0.popupViewController = SideMenuViewController.fromStoryboard()
         }
@@ -35,8 +35,8 @@ class ViewController: UIViewController {
     var topNotification: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.edges(left: 0, right: 0, top: 0, bottom:nil), .height(90)]
-            $0.inAnimation = .bounceTop(damping: 0.9, velocity: 2)
-            $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
+            $0.inAnimation = .bounceFromTop(damping: 0.9, velocity: 2, animationOption: .curveEaseInOut)
+            $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
             $0.popupView = NotificationView.loadView()
         }
@@ -45,8 +45,8 @@ class ViewController: UIViewController {
     var bottomMenu: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.edges(left: 0, right: 0, top: nil, bottom:0), .height(400)]
-            $0.inAnimation = .bounceBottom(damping: 0.86, velocity: 2)
-            $0.outAnimation = .bounceTop(damping: 0.72, velocity: 2)
+            $0.inAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+            $0.outAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .transparentOverlay(0.5)
             $0.popupView = TestView(radius: 0)
         }
@@ -55,8 +55,8 @@ class ViewController: UIViewController {
     var slideFromBottom: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
-            $0.inAnimation = .slideBottom
-            $0.outAnimation = .slideTop
+            $0.inAnimation = .slideFromBottom(animationOption: .curveEaseInOut)
+            $0.outAnimation = .slideFromTop(animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
             $0.popupView = TestView()
         }
@@ -65,8 +65,8 @@ class ViewController: UIViewController {
     var bounceFromTop: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(350)]
-            $0.inAnimation = .bounceTop(damping: 0.72, velocity: 2)
-            $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
+            $0.inAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
+            $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
             $0.popupView = CenterModalView.loadView()
         }
@@ -74,9 +74,9 @@ class ViewController: UIViewController {
     var zoomIn: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
-            $0.inAnimation = .zoomOut(1.2)
-            $0.outAnimation = .bounceBottom(damping: 0.86, velocity: 2)
-            $0.backgroundEffect = .blurLight
+            $0.inAnimation = .zoomOut(1.2, animationOption: .curveEaseInOut)
+            $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+            $0.backgroundEffect = .blurDark
             $0.popupView = TestView()
         }
     }

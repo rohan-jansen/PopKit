@@ -22,10 +22,11 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         return transitionDuration ?? 0.7
     }
     
-    func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect) {
+    func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIViewAnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         controller.presentedViewController.view.frame = initialFrame
-        UIView.animate(withDuration: animationDuration, animations: {
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: animationOption, animations: {
             controller.presentedViewController.view.frame = finalFrame
             controller.presentedViewController.view.transform = CGAffineTransform.identity
         }) { finished in
@@ -33,11 +34,11 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         }
     }
     
-    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect) {
+    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIViewAnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         controller.presentedViewController.view.frame = initialFrame
         
-        UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: CGFloat(damping), initialSpringVelocity: CGFloat(velocity), options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: CGFloat(damping), initialSpringVelocity: CGFloat(velocity), options: animationOption, animations: {
             controller.presentedViewController.view.frame = finalFrame
         }) { finished in
             transitionContext.completeTransition(finished)
@@ -56,36 +57,36 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         let finalFrame = controller.frameOfPresentedViewInContainerView
         
         switch kit.inAnimation {
-        case .slideTop:
+        case .slideFromTop(let animationOption):
             initialFrame.origin.y = -presentedFrame.size.height
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .slideLeft:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .slideFromLeft(let animationOption):
             initialFrame.origin.x = -presentedFrame.size.width
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .slideRight:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .slideFromRight(let animationOption):
             initialFrame.origin.x = presentedFrame.size.width
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .slideBottom:
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .slideFromBottom(let animationOption):
             initialFrame.origin.y = presentedFrame.size.height
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .zoomIn(let scale):
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .zoomIn(let scale, let animationOption):
             controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .zoomOut(let scale):
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .zoomOut(let scale, let animationOption):
             controller.presentedViewController.view.transform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale))
-            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame)
-        case .bounceTop(let damping, let velocity):
+            animateSlideAndScale(transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .bounceFromTop(let damping, let velocity, let animationOption):
             initialFrame.origin.y = -presentedFrame.size.height
-            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
-        case .bounceLeft(let damping, let velocity):
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .bounceFromLeft(let damping, let velocity, let animationOption):
             initialFrame.origin.x = -presentedFrame.size.width
-            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
-        case .bounceRight(let damping, let velocity):
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .bounceFromRight(let damping, let velocity, let animationOption):
             initialFrame.origin.x = presentedFrame.size.width
-            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
-        case .bounceBottom(let damping, let velocity):
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame, animationOption)
+        case .bounceFromBottom(let damping, let velocity, let animationOption):
             initialFrame.origin.y = presentedFrame.size.height
-            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame)
+            animateBounce(damping, velocity, transitionContext, controller, initialFrame, finalFrame, animationOption)
         }
     }
 }
