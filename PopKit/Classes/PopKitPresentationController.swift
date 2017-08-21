@@ -105,7 +105,7 @@ class PopKitPresentationController: UIPresentationController {
     
     override func dismissalTransitionWillBegin() {
         super.presentationTransitionWillBegin()
-        UIView.animate(withDuration: 0.7, animations: { [unowned self] in
+        UIView.animate(withDuration: popKit!.transitionSpeed, animations: { [unowned self] in
             self.effectView.alpha = 0
         }) { (done) in
             self.effectView.removeFromSuperview()
@@ -124,7 +124,7 @@ class PopKitPresentationController: UIPresentationController {
         effectView.topAnchor.constraint(equalTo: presentingViewController.view.topAnchor, constant: CGFloat(0)).isActive = true
         effectView.bottomAnchor.constraint(equalTo: presentingViewController.view.bottomAnchor, constant: -1 * CGFloat(0)).isActive = true
         
-        UIView.animate(withDuration: 0.7) { [unowned self] in
+        UIView.animate(withDuration: popKit!.transitionSpeed) { [unowned self] in
             switch self.popKit!.backgroundEffect {
             case .blurDark, .blurLight:
                 self.effectView.alpha = 1

@@ -21,6 +21,7 @@ public class PopKit {
     public var popupViewController: UIViewController?
     public var dismissAction: (() -> Void)?
     public var mainAction: (() -> Void)?
+    public var transitionSpeed: TimeInterval = 0.6
     public var inAnimation: PopKitAnimation = .slideFromTop(animationOption: .curveEaseInOut)
     public var outAnimation: PopKitAnimation = .slideFromBottom(animationOption: .curveEaseInOut)
     public var backgroundEffect: PopKitBackgroundEffect = .blurDark

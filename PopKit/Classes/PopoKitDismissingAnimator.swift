@@ -18,7 +18,7 @@ class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning,
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return transitionDuration ?? 0.7
+        return kit.transitionSpeed
     }
     
     func animateSlide(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ finalCenter: CGPoint, _ animationOption: UIViewAnimationOptions) {

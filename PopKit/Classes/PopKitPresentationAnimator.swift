@@ -19,7 +19,7 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return transitionDuration ?? 0.7
+        return kit.transitionSpeed
     }
     
     func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIViewAnimationOptions) {

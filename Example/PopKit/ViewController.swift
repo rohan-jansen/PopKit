@@ -38,6 +38,7 @@ class ViewController: UIViewController {
             $0.inAnimation = .bounceFromTop(damping: 0.9, velocity: 2, animationOption: .curveEaseInOut)
             $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
+            $0.transitionSpeed = 0.3
             $0.popupView = NotificationView.loadView()
         }
     }
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
             $0.inAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
             $0.outAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .transparentOverlay(0.5)
+            $0.transitionSpeed = 0.3
             $0.popupView = TestView(radius: 0)
         }
     }
@@ -55,9 +57,10 @@ class ViewController: UIViewController {
     var slideFromBottom: PopKit {
         return PopKitBuilder() {
             $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
-            $0.inAnimation = .slideFromBottom(animationOption: .curveEaseInOut)
+            $0.inAnimation = .slideFromBottom(animationOption: .curveEaseOut)
             $0.outAnimation = .slideFromTop(animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
+            $0.transitionSpeed = 0.3
             $0.popupView = TestView()
         }
     }
@@ -77,6 +80,7 @@ class ViewController: UIViewController {
             $0.inAnimation = .zoomOut(1.2, animationOption: .curveEaseInOut)
             $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
             $0.backgroundEffect = .blurDark
+            $0.transitionSpeed = 0.46
             $0.popupView = TestView()
         }
     }
