@@ -15,6 +15,12 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A002E607311C0FF2D672617D /* Pods_PopKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA7616A517CDDFA44411B4B /* Pods_PopKit_Example.framework */; };
 		AA4C7ADFEB294E229B995488 /* Pods_PopKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E1E408AC84FFD64E866CB /* Pods_PopKit_Tests.framework */; };
+		C01258B71FAC8EC70096AA51 /* ZoomAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01258B61FAC8EC70096AA51 /* ZoomAnimationView.xib */; };
+		C01258B91FAC8ED10096AA51 /* ZoomAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01258B81FAC8ED10096AA51 /* ZoomAnimationView.swift */; };
+		C01258BB1FAC8FBC0096AA51 /* SlideAnimation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01258BA1FAC8FBC0096AA51 /* SlideAnimation.xib */; };
+		C01258BD1FAC8FC70096AA51 /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01258BC1FAC8FC70096AA51 /* SlideAnimation.swift */; };
+		C01258BF1FAC8FFE0096AA51 /* BounceAnimation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01258BE1FAC8FFE0096AA51 /* BounceAnimation.xib */; };
+		C01258C11FAC90090096AA51 /* BounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01258C01FAC90090096AA51 /* BounceAnimation.swift */; };
 		C0336C411F45DD8F00CBD160 /* CenterModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0336C401F45DD8F00CBD160 /* CenterModalView.xib */; };
 		C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0336C421F45DD9800CBD160 /* CenterModalView.swift */; };
 		C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A83D031F45BD0400F96B73 /* NotificationView.xib */; };
@@ -49,6 +55,12 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		9EC07B73E1F2F3E452795B5A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B32B66473CA0E10CB401519D /* PopKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopKit.podspec; path = ../PopKit.podspec; sourceTree = "<group>"; };
+		C01258B61FAC8EC70096AA51 /* ZoomAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoomAnimationView.xib; sourceTree = "<group>"; };
+		C01258B81FAC8ED10096AA51 /* ZoomAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimationView.swift; sourceTree = "<group>"; };
+		C01258BA1FAC8FBC0096AA51 /* SlideAnimation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideAnimation.xib; sourceTree = "<group>"; };
+		C01258BC1FAC8FC70096AA51 /* SlideAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
+		C01258BE1FAC8FFE0096AA51 /* BounceAnimation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BounceAnimation.xib; sourceTree = "<group>"; };
+		C01258C01FAC90090096AA51 /* BounceAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimation.swift; sourceTree = "<group>"; };
 		C0336C401F45DD8F00CBD160 /* CenterModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterModalView.xib; sourceTree = "<group>"; };
 		C0336C421F45DD9800CBD160 /* CenterModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterModalView.swift; sourceTree = "<group>"; };
 		C0A83D031F45BD0400F96B73 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
@@ -169,6 +181,12 @@
 				C0A83D051F45BE6900F96B73 /* NotificationView.swift */,
 				C0336C401F45DD8F00CBD160 /* CenterModalView.xib */,
 				C0336C421F45DD9800CBD160 /* CenterModalView.swift */,
+				C01258B61FAC8EC70096AA51 /* ZoomAnimationView.xib */,
+				C01258B81FAC8ED10096AA51 /* ZoomAnimationView.swift */,
+				C01258BA1FAC8FBC0096AA51 /* SlideAnimation.xib */,
+				C01258BC1FAC8FC70096AA51 /* SlideAnimation.swift */,
+				C01258BE1FAC8FFE0096AA51 /* BounceAnimation.xib */,
+				C01258C01FAC90090096AA51 /* BounceAnimation.swift */,
 			);
 			name = "Example Views";
 			sourceTree = "<group>";
@@ -273,7 +291,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01258BF1FAC8FFE0096AA51 /* BounceAnimation.xib in Resources */,
+				C01258BB1FAC8FBC0096AA51 /* SlideAnimation.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				C01258B71FAC8EC70096AA51 /* ZoomAnimationView.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */,
@@ -389,10 +410,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */,
+				C01258B91FAC8ED10096AA51 /* ZoomAnimationView.swift in Sources */,
 				C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				C01258C11FAC90090096AA51 /* BounceAnimation.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C0D9ED951F45ABAE004ECD5B /* SideMenuViewController.swift in Sources */,
+				C01258BD1FAC8FC70096AA51 /* SlideAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

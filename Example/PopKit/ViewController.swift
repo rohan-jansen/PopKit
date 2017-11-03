@@ -88,6 +88,7 @@ class ViewController: UIViewController {
     @IBAction func showSideMenu(_ sender: Any) {
         sideMenu.show()
     }
+    
     @IBAction func showTopNotification(_ sender: Any) {
         topNotification.show()
     }
@@ -95,6 +96,7 @@ class ViewController: UIViewController {
     @IBAction func showBottomMenu(_ sender: Any) {
         bottomMenu.show()
     }
+    
     @IBAction func showSlideFromBottom(_ sender: Any) {
         slideFromBottom.show()
     }
