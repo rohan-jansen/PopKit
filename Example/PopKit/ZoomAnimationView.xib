@@ -12,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZoomAnimationView" customModule="PopKit_Example" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cYS-l4-e4o">
-                    <rect key="frame" x="10" y="10" width="355" height="29"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="Nj0-1o-Zw7"/>
                     </constraints>
@@ -26,13 +26,13 @@
                     </segments>
                 </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale from value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsa-ku-twY">
-                    <rect key="frame" x="10" y="48" width="107" height="17"/>
+                    <rect key="frame" x="0.0" y="28" width="107" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-Cc-2qD">
-                    <rect key="frame" x="10" y="73" width="107" height="30"/>
+                    <rect key="frame" x="0.0" y="53" width="107" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -41,17 +41,17 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="eWt-Cc-2qD" firstAttribute="leading" secondItem="vsa-ku-twY" secondAttribute="leading" id="2ur-4F-mHg"/>
-                <constraint firstItem="vsa-ku-twY" firstAttribute="top" secondItem="cYS-l4-e4o" secondAttribute="bottom" constant="10" id="NZk-9g-0OH"/>
+                <constraint firstItem="vsa-ku-twY" firstAttribute="top" secondItem="cYS-l4-e4o" secondAttribute="bottom" id="NZk-9g-0OH"/>
                 <constraint firstItem="eWt-Cc-2qD" firstAttribute="top" secondItem="vsa-ku-twY" secondAttribute="bottom" constant="8" id="RYy-iu-pYZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cYS-l4-e4o" secondAttribute="trailing" constant="10" id="UkD-Xx-tLp"/>
-                <constraint firstItem="cYS-l4-e4o" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="kWZ-cq-K2X"/>
-                <constraint firstItem="vsa-ku-twY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="m8a-je-tFW"/>
-                <constraint firstItem="cYS-l4-e4o" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="qIC-wi-qBT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cYS-l4-e4o" secondAttribute="trailing" id="UkD-Xx-tLp"/>
+                <constraint firstItem="cYS-l4-e4o" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kWZ-cq-K2X"/>
+                <constraint firstItem="vsa-ku-twY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="m8a-je-tFW"/>
+                <constraint firstItem="cYS-l4-e4o" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qIC-wi-qBT"/>
                 <constraint firstItem="eWt-Cc-2qD" firstAttribute="trailing" secondItem="vsa-ku-twY" secondAttribute="trailing" id="y78-pM-abn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="34.5" y="-221.5"/>
+            <point key="canvasLocation" x="34.5" y="-235"/>
         </view>
     </objects>
 </document>
