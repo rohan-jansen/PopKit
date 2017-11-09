@@ -15,9 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="391" height="106"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="td7-JG-m6G">
-                    <rect key="frame" x="20" y="20" width="351" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="td7-JG-m6G">
+                    <rect key="frame" x="0.0" y="0.0" width="391" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="OsB-JQ-nUa"/>
+                    </constraints>
                     <segments>
                         <segment title="Top"/>
                         <segment title="Left"/>
@@ -25,36 +27,51 @@
                         <segment title="Bottom"/>
                     </segments>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grc-W4-S3S">
-                    <rect key="frame" x="20" y="67" width="63" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grc-W4-S3S">
+                    <rect key="frame" x="10" y="38" width="58" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jpe-Ng-Vs2">
-                    <rect key="frame" x="91" y="61" width="93" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jpe-Ng-Vs2">
+                    <rect key="frame" x="76" y="32" width="93" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="93" id="a7E-Ea-0Fv"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Velocity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-8k-caD">
-                    <rect key="frame" x="206" y="66" width="58" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velocity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-8k-caD">
+                    <rect key="frame" x="177" y="38" width="51.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-Iv-1h0">
-                    <rect key="frame" x="264" y="61" width="107" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-Iv-1h0">
+                    <rect key="frame" x="236" y="32" width="104" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="104" id="PsO-9R-jye"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="QiM-Iv-1h0" firstAttribute="leading" secondItem="v3E-8k-caD" secondAttribute="trailing" constant="7.5" id="89A-Ny-zBB"/>
+                <constraint firstItem="jpe-Ng-Vs2" firstAttribute="leading" secondItem="Grc-W4-S3S" secondAttribute="trailing" constant="8" id="9bP-ff-gEU"/>
+                <constraint firstItem="Grc-W4-S3S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="BCS-Ec-hg3"/>
+                <constraint firstItem="td7-JG-m6G" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="M64-WZ-6E9"/>
+                <constraint firstItem="td7-JG-m6G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YwB-ta-BYo"/>
+                <constraint firstItem="QiM-Iv-1h0" firstAttribute="centerY" secondItem="jpe-Ng-Vs2" secondAttribute="centerY" id="er9-c2-Xh9"/>
+                <constraint firstItem="v3E-8k-caD" firstAttribute="leading" secondItem="jpe-Ng-Vs2" secondAttribute="trailing" constant="8" id="oPK-dY-Mbx"/>
+                <constraint firstItem="Grc-W4-S3S" firstAttribute="top" secondItem="td7-JG-m6G" secondAttribute="bottom" constant="10" id="uRr-rQ-5pU"/>
+                <constraint firstItem="td7-JG-m6G" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uc7-1Q-FYp"/>
+                <constraint firstItem="jpe-Ng-Vs2" firstAttribute="centerY" secondItem="Grc-W4-S3S" secondAttribute="centerY" id="v5C-39-Zoh"/>
+                <constraint firstItem="v3E-8k-caD" firstAttribute="centerY" secondItem="Grc-W4-S3S" secondAttribute="centerY" id="xV2-jm-leN"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="41.5" y="-227"/>
