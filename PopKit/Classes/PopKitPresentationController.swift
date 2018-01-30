@@ -22,7 +22,6 @@ class PopKitPresentationController: UIPresentationController {
             if let popup = kit.popupView {
                 
                 popup.translatesAutoresizingMaskIntoConstraints = false
-                popup.tag = 666
                 presentedViewController.view.addSubview(popup)
                 
                 kit.constraints.forEach({ (kitConstraint) in
@@ -34,7 +33,6 @@ class PopKitPresentationController: UIPresentationController {
             } else if let popupVc = kit.popupViewController {
                 popupVc.view.translatesAutoresizingMaskIntoConstraints = false
                 presentedViewController.addChildViewController(popupVc)
-                popupVc.view.tag = 666
                 presentedViewController.view.addSubview(popupVc.view)
                 popupVc.didMove(toParentViewController: presentedViewController)
                 
