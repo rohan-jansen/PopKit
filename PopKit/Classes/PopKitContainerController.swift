@@ -42,7 +42,7 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
     
     func popToAdditionalConstraints() {
         let popkitPresentationController = presentationController as! PopKitPresentationController
-        popkitPresentationController.popToAdditionalConstraints()
+        popkitPresentationController.popToSecondaryPosition()
     }
 }
 
