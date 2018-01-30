@@ -40,6 +40,10 @@ class PopKitContainerController: UIViewController, UIViewControllerTransitioning
         return PopKitDismissingAnimator(with: popKit!)
     }
     
+    func popToAdditionalConstraints() {
+        let popkitPresentationController = presentationController as! PopKitPresentationController
+        popkitPresentationController.popToAdditionalConstraints()
+    }
 }
 
 

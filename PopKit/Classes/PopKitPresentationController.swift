@@ -22,6 +22,7 @@ class PopKitPresentationController: UIPresentationController {
             if let popup = kit.popupView {
                 
                 popup.translatesAutoresizingMaskIntoConstraints = false
+                popup.tag = 666
                 presentedViewController.view.addSubview(popup)
                 
                 kit.constraints.forEach({ (kitConstraint) in
@@ -33,6 +34,7 @@ class PopKitPresentationController: UIPresentationController {
             } else if let popupVc = kit.popupViewController {
                 popupVc.view.translatesAutoresizingMaskIntoConstraints = false
                 presentedViewController.addChildViewController(popupVc)
+                popupVc.view.tag = 666
                 presentedViewController.view.addSubview(popupVc.view)
                 popupVc.didMove(toParentViewController: presentedViewController)
                 
@@ -48,6 +50,22 @@ class PopKitPresentationController: UIPresentationController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
             presentedViewController.view.addGestureRecognizer(tap)
             
+        }
+    }
+    
+    func popToAdditionalConstraints() {
+        
+        let popupView = presentedViewController.view.subviews.first(where: { (view) -> Bool in
+            return view.tag == 666
+        })
+        
+        if let kit = popKit {
+ 
+            kit.additionalConstraints.forEach({ (kitConstraint) in
+                activateConstraints(kitConstraint, popupView!)
+            })
+            
+            presentedViewController.view.layoutIfNeeded()
         }
     }
     
