@@ -85,27 +85,44 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func showSideMenu(_ sender: Any) {
-        sideMenu.show()
-    }
-    @IBAction func showTopNotification(_ sender: Any) {
-        topNotification.show()
+    @IBOutlet var animationTypeContainer: UIView!
+    
+    @IBAction func animationSelected(_ sender: UISegmentedControl) {
+        animationType = AnimationType(rawValue: sender.selectedSegmentIndex)!
     }
     
-    @IBAction func showBottomMenu(_ sender: Any) {
-        bottomMenu.show()
-    }
-    @IBAction func showSlideFromBottom(_ sender: Any) {
-        slideFromBottom.show()
+    var animationType: AnimationType = .zoom {
+        didSet {
+            animationTypeContainer.subviews.forEach { $0.removeFromSuperview() }
+            let view: UIView
+            switch animationType {
+            case .zoom:
+                view = Bundle.loadView(fromNib: "ZoomAnimationView", withType: ZoomAnimationView.self)
+            case .slide:
+                view = Bundle.loadView(fromNib: "SlideAnimation", withType: SlideAnimation.self)
+            case .bounce:
+                view = Bundle.loadView(fromNib: "BounceAnimation", withType: BounceAnimation.self)
+            }
+            
+            animationTypeContainer.addSubview(view)
+
+            view.leftAnchor.constraint(equalTo: animationTypeContainer.leftAnchor, constant: 0).isActive = true
+            view.rightAnchor.constraint(equalTo: animationTypeContainer.rightAnchor, constant: 0).isActive = true
+            view.topAnchor.constraint(equalTo: animationTypeContainer.topAnchor, constant: 0).isActive = true
+            view.bottomAnchor.constraint(equalTo: animationTypeContainer.bottomAnchor, constant: 0).isActive = true
+        }
     }
     
-    @IBAction func showBounceFromTop(_ sender: Any) {
-        bounceFromTop.show()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        animationType = .zoom
     }
-    
-    @IBAction func showZoomIn(_ sender: Any) {
-        zoomIn.show()
-    }
+}
+
+enum AnimationType: Int {
+    case zoom
+    case slide
+    case bounce
 }
 
 class TestView: UIView {
