@@ -43,10 +43,6 @@ extension PopKit {
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             root.present(container, animated: true, completion: nil)
         }
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            container.popToAdditionalConstraints()
-//        }
     }
     
     public func dismiss() {
