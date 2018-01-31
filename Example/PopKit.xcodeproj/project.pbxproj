@@ -23,6 +23,7 @@
 		C01258C11FAC90090096AA51 /* BounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01258C01FAC90090096AA51 /* BounceAnimation.swift */; };
 		C0336C411F45DD8F00CBD160 /* CenterModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0336C401F45DD8F00CBD160 /* CenterModalView.xib */; };
 		C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0336C421F45DD9800CBD160 /* CenterModalView.swift */; };
+		C074C9372021BC91001FD8D9 /* version.swift-version in Resources */ = {isa = PBXBuildFile; fileRef = C074C9362021BC91001FD8D9 /* version.swift-version */; };
 		C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A83D031F45BD0400F96B73 /* NotificationView.xib */; };
 		C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83D051F45BE6900F96B73 /* NotificationView.swift */; };
 		C0D9ED951F45ABAE004ECD5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */; };
@@ -63,6 +64,7 @@
 		C01258C01FAC90090096AA51 /* BounceAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimation.swift; sourceTree = "<group>"; };
 		C0336C401F45DD8F00CBD160 /* CenterModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterModalView.xib; sourceTree = "<group>"; };
 		C0336C421F45DD9800CBD160 /* CenterModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterModalView.swift; sourceTree = "<group>"; };
+		C074C9362021BC91001FD8D9 /* version.swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "version.swift-version"; sourceTree = "<group>"; };
 		C0A83D031F45BD0400F96B73 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		C0A83D051F45BE6900F96B73 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		607FACD21AFB9204008FA782 /* Example for PopKit */ = {
 			isa = PBXGroup;
 			children = (
+				C074C9362021BC91001FD8D9 /* version.swift-version */,
 				C0D9ED931F45AB82004ECD5B /* Example Views */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -299,6 +302,7 @@
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */,
 				C0336C411F45DD8F00CBD160 /* CenterModalView.xib in Resources */,
+				C074C9372021BC91001FD8D9 /* version.swift-version in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +501,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -537,7 +541,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -552,7 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56XX9JASG7;
 				INFOPLIST_FILE = PopKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -568,7 +572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56XX9JASG7;
 				INFOPLIST_FILE = PopKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

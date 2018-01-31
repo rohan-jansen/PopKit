@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PopKit'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A flexible framework as a one size fits all solution for popups, modals, notifications and menus'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ The purpose of this pod is to provide users with a one size fits all solution po
   s.homepage         = 'https://github.com/rohan-jansen/PopKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Rohan Jansen' => rohanjansen@gmail.com' }
+  s.author           = { 'Rohan Jansen' => 'rohanjansen@gmail.com' }
   s.source           = { :git => 'https://github.com/rohan-jansen/PopKit.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/rohan_jansen'
 
