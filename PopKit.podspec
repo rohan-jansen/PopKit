@@ -18,21 +18,21 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-A flexible framework as a one size fits all solution for popups, modals, notifications and menus
+The purpose of this pod is to provide users with a one size fits all solution popups, modals, notifications and menus. The are hundreds of different little libraries that are very specific, which means that in the end your solution gets clogged up with tons of pods, which is completely unnecessary. Popkit is a flexible solution for you to create any form of popup in any size, with control of animations and constraints.
                        DESC
 
   s.homepage         = 'https://github.com/rohan-jansen/PopKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'rohan-jansen' => 'rohan@flatcircle.io' }
+  s.author           = { 'Rohan Jansen' => rohanjansen@gmail.com' }
   s.source           = { :git => 'https://github.com/rohan-jansen/PopKit.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/rohan_jansen'
 
-  s.ios.deployment_target = '11.0'
+    s.platform     = :ios
+    s.platform     = :ios, "9.0"
+
+    #  When using multiple platforms
+    s.ios.deployment_target = "9.0"
 
   s.source_files = 'PopKit/Classes/**/*'
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
