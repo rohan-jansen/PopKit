@@ -1,16 +1,16 @@
 PODS:
-  - PopKit (0.1.0)
+  - PopKit (0.1.3)
 
 DEPENDENCIES:
   - PopKit (from `../`)
 
 EXTERNAL SOURCES:
   PopKit:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  PopKit: f55522454db4ca4dc8710b194db07e0564bfa37b
+  PopKit: 53dbab61747937c3c55f046e9949d8e7b38f2b34
 
 PODFILE CHECKSUM: 515beaa0c4efdd9af7b59fb74171fe3d504a2d38
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0
