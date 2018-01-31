@@ -63,7 +63,7 @@ extension Notification.Name {
 }
 
 extension PopKit {
-    static func dismiss() {
+    public static func dismiss() {
         NotificationCenter.default.post(name: .dismissPopKit, object: nil)
     }
 }
