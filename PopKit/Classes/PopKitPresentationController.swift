@@ -43,11 +43,9 @@ class PopKitPresentationController: UIPresentationController {
                 presentedViewController.view.layoutIfNeeded()
             }
             
-            
-            //TODO: this needs to change
             let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
-            presentedViewController.view.addGestureRecognizer(tap)
-            
+            tap.delegate = self
+            UIApplication.shared.windows.first?.addGestureRecognizer(tap)
         }
     }
     
@@ -148,6 +146,17 @@ class PopKitPresentationController: UIPresentationController {
                 self.effectView.alpha = CGFloat(alpha)
             }
         }
+    }
+}
+
+extension PopKitPresentationController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point = touch.location(in: self.presentingViewController.view)
+        if !presentedViewController.view.frame.contains(point) {
+            PopKit.dismiss()
+        }
+        return false
     }
 }
 
