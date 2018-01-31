@@ -22,6 +22,9 @@ it, simply add the following line to your Podfile:
 pod "PopKit"
 ```
 
+## Use
+To use PopKit is extremenly simple. Use PopKitBuilder to initialise your popup view. Create your own custom UIView or UIViewcontroller and add that to either the popupView or popupViewController property depending on which type of view you are using. Have a look at the samples below for some example uses. A proper example project is in the works still ;)
+
 ### Example side menu with a UIViewController as popup view
 
 
@@ -29,13 +32,13 @@ pod "PopKit"
 ```swift
 
 var sideMenu: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(275)]
-$0.inAnimation = .bounceFromLeft(damping: 0.82, velocity: 2, animationOption: .curveEaseInOut)
-$0.outAnimation = .bounceFromRight(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
-$0.backgroundEffect = .blurDark
-$0.popupViewController = SideMenuViewController.fromStoryboard()
-}
+    return PopKitBuilder() {
+        $0.constraints = [.edges(left: 0, right: nil, top: 0, bottom: 0), .width(275)]
+        $0.inAnimation = .bounceFromLeft(damping: 0.82, velocity: 2, animationOption: .curveEaseInOut)
+        $0.outAnimation = .bounceFromRight(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .blurDark
+        $0.popupViewController = SideMenuViewController.fromStoryboard()
+    }
 }
 
 sideMenu.show()
@@ -44,22 +47,23 @@ sideMenu.show()
 
 To dismiss the popup, simply call Popkit.dismiss() from anywhere
 
-### Example top notification pop down view
+### Example top notification pop down view, using a Xib as the popup view
 
 
 ```swift
 
 var topNotification: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.edges(left: 0, right: 0, top: 0, bottom:nil), .height(90)]
-$0.inAnimation = .bounceFromTop(damping: 0.9, velocity: 2, animationOption: .curveEaseInOut)
-$0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
-$0.backgroundEffect = .blurDark
-$0.transitionSpeed = 0.3
-$0.popupView = NotificationView.loadView()
-}
+    return PopKitBuilder() {
+        $0.constraints = [.edges(left: 0, right: 0, top: 0, bottom:nil), .height(90)]
+        $0.inAnimation = .bounceFromTop(damping: 0.9, velocity: 2, animationOption: .curveEaseInOut)
+        $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .blurDark
+        $0.transitionSpeed = 0.3
+        $0.popupView = NotificationView.loadView()
+    }
 }
 
+topNotification.show()
 ```
 
 ### Example menu moving up from bottom
@@ -67,31 +71,33 @@ $0.popupView = NotificationView.loadView()
 ```swift
 
 var bottomMenu: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.edges(left: 0, right: 0, top: nil, bottom:0), .height(400)]
-$0.inAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
-$0.outAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
-$0.backgroundEffect = .transparentOverlay(0.5)
-$0.transitionSpeed = 0.3
-$0.popupView = TestView(radius: 0)
-}
+    return PopKitBuilder() {
+        $0.constraints = [.edges(left: 0, right: 0, top: nil, bottom:0), .height(400)]
+        $0.inAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+        $0.outAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .transparentOverlay(0.5)
+        $0.transitionSpeed = 0.3
+        $0.popupView = TestView(radius: 0)
+    }
 }
 
+bottomMenu.show()
 ```
 ### Example popup bouncing in from the top
 
 ```swift
 
 var bounceFromTop: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.center(x: 0, y: 0), .width(300), .height(350)]
-$0.inAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
-$0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
-$0.backgroundEffect = .blurDark
-$0.popupView = CenterModalView.loadView()
-}
+    return PopKitBuilder() {
+        $0.constraints = [.center(x: 0, y: 0), .width(300), .height(350)]
+        $0.inAnimation = .bounceFromTop(damping: 0.72, velocity: 2, animationOption: .curveEaseInOut)
+        $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .blurDark
+        $0.popupView = CenterModalView.loadView()
+    }
 }
 
+bounceFromTop.show()
 ```
 
 ### Example popup sliding in from the bottom
@@ -100,15 +106,17 @@ $0.popupView = CenterModalView.loadView()
 
 
 var slideFromBottom: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
-$0.inAnimation = .slideFromBottom(animationOption: .curveEaseOut)
-$0.outAnimation = .slideFromTop(animationOption: .curveEaseInOut)
-$0.backgroundEffect = .blurDark
-$0.transitionSpeed = 0.3
-$0.popupView = TestView()
+    return PopKitBuilder() {
+        $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
+        $0.inAnimation = .slideFromBottom(animationOption: .curveEaseOut)
+        $0.outAnimation = .slideFromTop(animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .blurDark
+        $0.transitionSpeed = 0.3
+        $0.popupView = TestView()
+    }
 }
-}
+
+slideFromBottom.show()
 
 ```
 
@@ -117,15 +125,17 @@ $0.popupView = TestView()
 ```swift
 
 var zoomIn: PopKit {
-return PopKitBuilder() {
-$0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
-$0.inAnimation = .zoomOut(1.2, animationOption: .curveEaseInOut)
-$0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
-$0.backgroundEffect = .blurDark
-$0.transitionSpeed = 0.46
-$0.popupView = TestView()
+    return PopKitBuilder() {
+        $0.constraints = [.center(x: 0, y: 0), .width(300), .height(300)]
+        $0.inAnimation = .zoomOut(1.2, animationOption: .curveEaseInOut)
+        $0.outAnimation = .bounceFromBottom(damping: 0.86, velocity: 2, animationOption: .curveEaseInOut)
+        $0.backgroundEffect = .blurDark
+        $0.transitionSpeed = 0.46
+        $0.popupView = TestView()
+    }
 }
-}
+
+zoomIn.show()
 ```
 
 # Contributing
