@@ -27,6 +27,10 @@
 		C0A83D041F45BD0400F96B73 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A83D031F45BD0400F96B73 /* NotificationView.xib */; };
 		C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83D051F45BE6900F96B73 /* NotificationView.swift */; };
 		C0D9ED951F45ABAE004ECD5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9ED941F45ABAE004ECD5B /* SideMenuViewController.swift */; };
+		E120CE522021CC13000C5E60 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120CE4E2021CC13000C5E60 /* OtherViewController.swift */; };
+		E120CE532021CC13000C5E60 /* NavControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120CE4F2021CC13000C5E60 /* NavControllers.swift */; };
+		E120CE542021CC13000C5E60 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120CE502021CC13000C5E60 /* DrawerViewController.swift */; };
+		E120CE552021CC13000C5E60 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120CE512021CC13000C5E60 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		C6C1DDBEE643E24CE7040CC6 /* Pods-PopKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DFCCF4284F8DE6A006C1FF69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DFE12719A4003B66819D1C91 /* Pods-PopKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PopKit_Tests/Pods-PopKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E120CE4E2021CC13000C5E60 /* OtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		E120CE4F2021CC13000C5E60 /* NavControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavControllers.swift; sourceTree = "<group>"; };
+		E120CE502021CC13000C5E60 /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		E120CE512021CC13000C5E60 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				C074C9362021BC91001FD8D9 /* version.swift-version */,
+				E120CE4D2021CBFF000C5E60 /* Hamburger Menu */,
 				C0D9ED931F45AB82004ECD5B /* Example Views */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -192,6 +201,17 @@
 				C01258C01FAC90090096AA51 /* BounceAnimation.swift */,
 			);
 			name = "Example Views";
+			sourceTree = "<group>";
+		};
+		E120CE4D2021CBFF000C5E60 /* Hamburger Menu */ = {
+			isa = PBXGroup;
+			children = (
+				E120CE502021CC13000C5E60 /* DrawerViewController.swift */,
+				E120CE512021CC13000C5E60 /* MainViewController.swift */,
+				E120CE4F2021CC13000C5E60 /* NavControllers.swift */,
+				E120CE4E2021CC13000C5E60 /* OtherViewController.swift */,
+			);
+			name = "Hamburger Menu";
 			sourceTree = "<group>";
 		};
 		ED6CC02E257408B44886783E /* Frameworks */ = {
@@ -322,9 +342,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PopKit_Example/Pods-PopKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PopKit/PopKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -382,13 +405,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PopKit_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BFFD7D46C60D9A7BBB3223A1 /* [CP] Check Pods Manifest.lock */ = {
@@ -397,13 +423,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PopKit_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -414,13 +443,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0336C431F45DD9800CBD160 /* CenterModalView.swift in Sources */,
+				E120CE522021CC13000C5E60 /* OtherViewController.swift in Sources */,
 				C01258B91FAC8ED10096AA51 /* ZoomAnimationView.swift in Sources */,
+				E120CE552021CC13000C5E60 /* MainViewController.swift in Sources */,
 				C0A83D061F45BE6900F96B73 /* NotificationView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				E120CE542021CC13000C5E60 /* DrawerViewController.swift in Sources */,
 				C01258C11FAC90090096AA51 /* BounceAnimation.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C0D9ED951F45ABAE004ECD5B /* SideMenuViewController.swift in Sources */,
 				C01258BD1FAC8FC70096AA51 /* SlideAnimation.swift in Sources */,
+				E120CE532021CC13000C5E60 /* NavControllers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
