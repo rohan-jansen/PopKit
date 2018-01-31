@@ -22,7 +22,7 @@ it, simply add the following line to your Podfile:
 pod "PopKit"
 ```
 
-![Alt Text](https://i.imgflip.com/23p7i6.gif)
+![Alt Text](https://media.giphy.com/media/xT1R9DhLzH8KoQFE3K/giphy.gif)
 
 
 ## Use
