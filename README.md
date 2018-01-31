@@ -22,6 +22,9 @@ it, simply add the following line to your Podfile:
 pod "PopKit"
 ```
 
+![Alt Text](https://i.imgflip.com/23p7i6.gif)
+
+
 ## Use
 To use PopKit is extremenly simple. Use PopKitBuilder to initialise your popup view. Create your own custom UIView or UIViewcontroller and add that to either the popupView or popupViewController property depending on which type of view you are using. Have a look at the samples below for some example uses. A proper example project is in the works still ;)
 
