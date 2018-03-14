@@ -71,11 +71,11 @@ extension PopKit {
         NotificationCenter.default.post(name: .dismissPopKit, object: nil)
     }
     
-    public static func menuStartedPresenting() {
+    public static func startedPresenting() {
         NotificationCenter.default.post(name: .startedPresenting, object: nil)
     }
     
-    public static func menuStoppedPresenting() {
+    public static func stoppedPresenting() {
         NotificationCenter.default.post(name: .stoppedPresenting, object: nil)
     }
 }
