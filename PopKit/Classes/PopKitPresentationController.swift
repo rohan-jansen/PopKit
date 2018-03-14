@@ -12,18 +12,18 @@ import UIKit
 class PopKitPresentationController: UIPresentationController {
     var popKit: PopKit?
     var effectView: UIView = UIView()
-    var menuIsPresenting = false
+    var isPresenting = false
     
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, popKit: PopKit?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         self.popKit = popKit
         
-        NotificationCenter.default.addObserver(forName: .menuStartedPresenting, object: nil, queue: .main) { [weak self] (notification) in
-            self?.menuIsPresenting = true
+        NotificationCenter.default.addObserver(forName: .startedPresenting, object: nil, queue: .main) { [weak self] (notification) in
+            self?.isPresenting = true
         }
         
-        NotificationCenter.default.addObserver(forName: .menuStoppedPresenting, object: nil, queue: .main) { [weak self] (notification) in
-            self?.menuIsPresenting = false
+        NotificationCenter.default.addObserver(forName: .stoppedPresenting, object: nil, queue: .main) { [weak self] (notification) in
+            self?.isPresenting = false
         }
         
         if let kit = popKit {
@@ -162,7 +162,7 @@ extension PopKitPresentationController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let point = touch.location(in: self.presentingViewController.view)
-        if !presentedViewController.view.frame.contains(point) && !menuIsPresenting {
+        if !presentedViewController.view.frame.contains(point) && !isPresenting {
             PopKit.dismiss()
         }
         return false
