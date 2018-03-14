@@ -56,11 +56,27 @@ extension Notification.Name {
     public static var dismissPopKit: NSNotification.Name {
         return Notification.Name("DismissPopKit")
     }
+    
+    public static var menuStartedPresenting: NSNotification.Name {
+        return Notification.Name("MenuStartedPresenting")
+    }
+    
+    public static var menuStoppedPresenting: NSNotification.Name {
+        return Notification.Name("MenuStoppedPresenting")
+    }
 }
 
 extension PopKit {
     public static func dismiss() {
         NotificationCenter.default.post(name: .dismissPopKit, object: nil)
+    }
+    
+    public static func menuStartedPresenting() {
+        NotificationCenter.default.post(name: .menuStartedPresenting, object: nil)
+    }
+    
+    public static func menuStoppedPresenting() {
+        NotificationCenter.default.post(name: .menuStoppedPresenting, object: nil)
     }
 }
 

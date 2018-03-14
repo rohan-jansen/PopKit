@@ -12,10 +12,19 @@ import UIKit
 class PopKitPresentationController: UIPresentationController {
     var popKit: PopKit?
     var effectView: UIView = UIView()
+    var menuIsPresenting = false
     
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, popKit: PopKit?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         self.popKit = popKit
+        
+        NotificationCenter.default.addObserver(forName: .menuStartedPresenting, object: nil, queue: .main) { [weak self] (notification) in
+            self?.menuIsPresenting = true
+        }
+        
+        NotificationCenter.default.addObserver(forName: .menuStoppedPresenting, object: nil, queue: .main) { [weak self] (notification) in
+            self?.menuIsPresenting = false
+        }
         
         if let kit = popKit {
             
@@ -153,7 +162,7 @@ extension PopKitPresentationController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let point = touch.location(in: self.presentingViewController.view)
-        if !presentedViewController.view.frame.contains(point) {
+        if !presentedViewController.view.frame.contains(point) && !menuIsPresenting {
             PopKit.dismiss()
         }
         return false
