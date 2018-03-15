@@ -9,6 +9,24 @@
 import Foundation
 import UIKit
 
+public protocol PopKitable {
+    var popupView: UIView? {get set}
+    var popupViewController: UIViewController? {get set}
+    var dismissAction: (() -> Void)? {get set}
+    var mainAction: (() -> Void)? {get set}
+    var transitionSpeed: TimeInterval {get set}
+    var inAnimation: PopKitAnimation {get set}
+    var outAnimation: PopKitAnimation {get set}
+    var backgroundEffect: PopKitBackgroundEffect {get set}
+    var constraints: [PopKitConstaint] {get set}
+    var additionalConstraints: [PopKitConstaint] {get set}
+    
+    func show()
+    func dismiss()
+    static func dismiss()
+    static func startedPresenting()
+    static func stoppedPresenting()
+}
 
 public func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
     let kit = PopKit()
@@ -16,7 +34,7 @@ public func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
     return kit
 }
 
-public class PopKit {
+public class PopKit: PopKitable {
     public var popupView: UIView?
     public var popupViewController: UIViewController?
     public var dismissAction: (() -> Void)?
