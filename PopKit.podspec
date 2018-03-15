@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PopKit'
-  s.version          = '0.1.3'
+  s.version          = '0.1.5'
   s.summary          = 'A flexible framework as a one size fits all solution for popups, modals, notifications and menus'
 
 # This description is used to generate tags and improve search results.
