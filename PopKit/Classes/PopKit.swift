@@ -24,6 +24,8 @@ public protocol PopKitable {
     func show()
     func dismiss()
     static func dismiss()
+    static func startedPresenting()
+    static func stoppedPresenting()
 }
 
 public func PopKitBuilder(_ builder: (PopKit) -> Void) -> PopKit {
