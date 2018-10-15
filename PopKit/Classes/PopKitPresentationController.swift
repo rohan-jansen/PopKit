@@ -41,9 +41,9 @@ class PopKitPresentationController: UIPresentationController {
                 
             } else if let popupVc = kit.popupViewController {
                 popupVc.view.translatesAutoresizingMaskIntoConstraints = false
-                presentedViewController.addChildViewController(popupVc)
+                presentedViewController.addChild(popupVc)
                 presentedViewController.view.addSubview(popupVc.view)
-                popupVc.didMove(toParentViewController: presentedViewController)
+                popupVc.didMove(toParent: presentedViewController)
                 
                 kit.constraints.forEach({ (kitConstraint) in
                     activateConstraints(kitConstraint, popupVc.view)
