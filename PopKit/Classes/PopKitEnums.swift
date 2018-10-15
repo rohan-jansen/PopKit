@@ -16,16 +16,16 @@ public enum PopKitConstaint {
 }
 
 public enum PopKitAnimation {
-    case zoomIn(Float, animationOption: UIViewAnimationOptions)
-    case zoomOut(Float, animationOption: UIViewAnimationOptions)
-    case slideFromTop(animationOption: UIViewAnimationOptions)
-    case slideFromLeft(animationOption: UIViewAnimationOptions)
-    case slideFromRight(animationOption: UIViewAnimationOptions)
-    case slideFromBottom(animationOption: UIViewAnimationOptions)
-    case bounceFromTop(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
-    case bounceFromLeft(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
-    case bounceFromRight(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
-    case bounceFromBottom(damping: Float, velocity: Float, animationOption: UIViewAnimationOptions)
+    case zoomIn(Float, animationOption: UIView.AnimationOptions)
+    case zoomOut(Float, animationOption: UIView.AnimationOptions)
+    case slideFromTop(animationOption: UIView.AnimationOptions)
+    case slideFromLeft(animationOption: UIView.AnimationOptions)
+    case slideFromRight(animationOption: UIView.AnimationOptions)
+    case slideFromBottom(animationOption: UIView.AnimationOptions)
+    case bounceFromTop(damping: Float, velocity: Float, animationOption: UIView.AnimationOptions)
+    case bounceFromLeft(damping: Float, velocity: Float, animationOption: UIView.AnimationOptions)
+    case bounceFromRight(damping: Float, velocity: Float, animationOption: UIView.AnimationOptions)
+    case bounceFromBottom(damping: Float, velocity: Float, animationOption: UIView.AnimationOptions)
 }
 
 public enum PopKitBackgroundEffect {

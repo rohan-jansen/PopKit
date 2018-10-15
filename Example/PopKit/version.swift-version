@@ -1,2 +1,2 @@
 
-echo 3.2 > .swift-version
+echo 4.2 > .swift-version

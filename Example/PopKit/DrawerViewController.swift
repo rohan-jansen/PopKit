@@ -37,9 +37,9 @@ class DrawerViewController: UITableViewController {
             
             let transition = CATransition()
             transition.duration = 0.5
-            transition.type = indexPath.row > 1 ? kCATransitionPush : kCATransitionMoveIn
-            transition.subtype = indexPath.row > 1 ? kCATransitionFromLeft : kCATransitionFromRight
-            transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = convertToCATransitionType(indexPath.row > 1 ? CATransitionType.push.rawValue : CATransitionType.moveIn.rawValue)
+            transition.subtype = convertToOptionalCATransitionSubtype(indexPath.row > 1 ? CATransitionSubtype.fromLeft.rawValue : CATransitionSubtype.fromRight.rawValue)
+            transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
             view.window!.layer.add(transition, forKey: kCATransition)
             
             self.present(vc, animated: false, completion: nil)
@@ -48,3 +48,14 @@ class DrawerViewController: UITableViewController {
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCATransitionType(_ input: String) -> CATransitionType {
+	return CATransitionType(rawValue: input)
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalCATransitionSubtype(_ input: String?) -> CATransitionSubtype? {
+	guard let input = input else { return nil }
+	return CATransitionSubtype(rawValue: input)
+}

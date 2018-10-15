@@ -21,7 +21,7 @@ class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning,
         return kit.transitionSpeed
     }
     
-    func animateSlide(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ finalCenter: CGPoint, _ animationOption: UIViewAnimationOptions) {
+    func animateSlide(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ finalCenter: CGPoint, _ animationOption: UIView.AnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
 
         UIView.animate(withDuration: animationDuration, delay: 0, options: animationOption, animations: {
@@ -32,7 +32,7 @@ class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning,
         }
     }
     
-    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ finalCenter: CGPoint, _ animationOption: UIViewAnimationOptions) {
+    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ finalCenter: CGPoint, _ animationOption: UIView.AnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         
         UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: CGFloat(damping), initialSpringVelocity: CGFloat(velocity), options: animationOption, animations: {
@@ -42,7 +42,7 @@ class PopKitDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning,
         }
     }
     
-    fileprivate func animateScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ scale: (Float), _ animationOption: UIViewAnimationOptions) {
+    fileprivate func animateScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ scale: (Float), _ animationOption: UIView.AnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         
         UIView.animate(withDuration: animationDuration, delay: 0, options: animationOption, animations: {

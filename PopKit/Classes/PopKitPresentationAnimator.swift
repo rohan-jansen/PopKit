@@ -22,7 +22,7 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         return kit.transitionSpeed
     }
     
-    func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIViewAnimationOptions) {
+    func animateSlideAndScale(_ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIView.AnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         controller.presentedViewController.view.frame = initialFrame
         
@@ -34,7 +34,7 @@ class PopKitPresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         }
     }
     
-    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIViewAnimationOptions) {
+    func animateBounce(_ damping: Float, _ velocity: Float, _ transitionContext: UIViewControllerContextTransitioning, _ controller: PopKitPresentationController, _ initialFrame: CGRect, _ finalFrame: CGRect, _ animationOption: UIView.AnimationOptions) {
         let animationDuration = transitionDuration(using: transitionContext)
         controller.presentedViewController.view.frame = initialFrame
         
